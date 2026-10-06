@@ -13,14 +13,13 @@
 
   <style>
     :root {
-      --black: #171717;
-      --dark: #222222;
-      --gold: #b18a55;
-      --gold-light: #d5b47b;
-      --text: #252525;
-      --muted: #777;
-      --line: #e5e0d8;
-      --paper: #ffffff;
+      --ink: #1d1d1d;
+      --text: #333;
+      --muted: #707070;
+      --gold: #a67c3d;
+      --gold-light: #d6bd91;
+      --line: #ddd6ca;
+      --paper: #fff;
       --background: #e9e6e1;
     }
 
@@ -33,21 +32,24 @@
     body {
       background: var(--background);
       color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Georgia, "Times New Roman", serif;
       line-height: 1.6;
     }
+
+    /* TOP BAR */
 
     .topbar {
       position: sticky;
       top: 0;
       z-index: 100;
-      height: 64px;
-      padding: 0 22px;
+      min-height: 64px;
+      padding: 10px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #111;
-      color: white;
+      background: #181818;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     .brand {
@@ -63,10 +65,10 @@
 
     .btn {
       border: 1px solid #444;
-      background: #202020;
+      background: #222;
       color: white;
       padding: 9px 14px;
-      border-radius: 7px;
+      border-radius: 5px;
       text-decoration: none;
       font-size: 12px;
       cursor: pointer;
@@ -77,83 +79,61 @@
       border-color: var(--gold);
     }
 
+    /* PAGE */
+
     .cv-wrapper {
-      padding: 35px 15px;
+      padding: 38px 15px;
     }
 
     .cv {
       width: min(210mm, 95vw);
       min-height: 297mm;
       margin: auto;
-      display: grid;
-      grid-template-columns: 34% 66%;
       background: var(--paper);
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.14);
+      padding: 48px 50px;
     }
 
-    .sidebar {
-      background: var(--black);
-      color: white;
-      padding: 42px 30px;
+    /* HEADER */
+
+    .cv-header {
+      display: grid;
+      grid-template-columns: 145px 1fr;
+      gap: 32px;
+      align-items: center;
+      padding-bottom: 30px;
+      border-bottom: 2px solid var(--ink);
+      position: relative;
+    }
+
+    .cv-header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 90px;
+      height: 5px;
+      background: var(--gold);
     }
 
     .profile-photo {
       width: 135px;
       height: 135px;
       object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid white;
-      display: block;
-      margin-bottom: 28px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      padding: 5px;
+      background: white;
     }
 
-    .side-section {
-      margin-top: 30px;
-    }
-
-    .side-title {
-      color: var(--gold-light);
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .contact {
-      color: #ddd;
-      font-size: 12px;
-      line-height: 2;
-      word-break: break-word;
-    }
-
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-
-    .skill {
-      border: 1px solid #555;
-      color: #ddd;
-      padding: 5px 8px;
-      border-radius: 20px;
-      font-size: 10px;
-    }
-
-    .languages {
-      color: #ddd;
-      font-size: 12px;
-      line-height: 2;
-    }
-
-    .main {
-      padding: 48px 45px;
+    .header-content {
+      min-width: 0;
     }
 
     .job-title {
       color: var(--gold);
-      font-size: 13px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
       font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 3px;
@@ -161,35 +141,109 @@
     }
 
     .name {
-      font-size: 43px;
+      color: var(--ink);
+      font-size: 42px;
       line-height: 1.05;
-      letter-spacing: -1.5px;
-      margin-bottom: 18px;
+      font-weight: 700;
+      margin-bottom: 13px;
     }
 
     .summary {
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.9;
-      max-width: 650px;
-      margin-bottom: 35px;
+      font-size: 12.5px;
+      line-height: 1.8;
+      max-width: 610px;
     }
 
+    /* CONTACT */
+
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--line);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5px;
+      color: #555;
+    }
+
+    .contact-item {
+      word-break: break-word;
+    }
+
+    .contact-item::before {
+      content: "•";
+      color: var(--gold);
+      margin-right: 7px;
+      font-weight: bold;
+    }
+
+    /* CONTENT GRID */
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 42px;
+      padding-top: 32px;
+    }
+
+    .main {
+      min-width: 0;
+    }
+
+    .sidebar {
+      border-left: 1px solid var(--line);
+      padding-left: 25px;
+    }
+
+    /* SECTIONS */
+
     .section {
-      margin-top: 30px;
+      margin-bottom: 31px;
     }
 
     .section-title {
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
       font-size: 11px;
-      letter-spacing: 3px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--line);
+      padding-bottom: 8px;
       margin-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
     }
 
+    .section-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 42px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    /* EXPERIENCE */
+
     .experience-item {
-      margin-bottom: 25px;
+      margin-bottom: 24px;
+      position: relative;
+      padding-left: 17px;
+      border-left: 2px solid #eee8dd;
+    }
+
+    .experience-item::before {
+      content: "";
+      position: absolute;
+      left: -5px;
+      top: 4px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
     }
 
     .experience-header {
@@ -199,79 +253,148 @@
     }
 
     .position {
+      color: var(--ink);
       font-size: 15px;
       font-weight: bold;
-      margin-bottom: 3px;
     }
 
     .company {
       color: var(--gold);
-      font-size: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
       font-weight: bold;
+      margin-top: 2px;
     }
 
     .date {
       color: #888;
-      font-size: 11px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
       white-space: nowrap;
     }
 
     .description {
       color: #666;
-      font-size: 12px;
+      font-size: 11.5px;
       line-height: 1.8;
-      margin-top: 8px;
+      margin-top: 7px;
     }
 
-    .education-item {
-      margin-bottom: 20px;
-    }
-
-    .degree {
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .university {
-      color: var(--gold);
-      font-size: 12px;
-      margin-top: 3px;
-    }
+    /* PROJECTS */
 
     .project {
-      margin-bottom: 20px;
+      margin-bottom: 19px;
     }
 
     .project-title {
-      font-size: 14px;
+      color: var(--ink);
+      font-size: 13.5px;
       font-weight: bold;
     }
 
     .project-text {
       color: #666;
-      font-size: 12px;
+      font-size: 11.5px;
       line-height: 1.8;
-      margin-top: 5px;
+      margin-top: 4px;
     }
 
+    /* EDUCATION */
+
+    .education-item {
+      margin-bottom: 19px;
+    }
+
+    .degree {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .university {
+      color: var(--gold);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5px;
+      margin-top: 2px;
+    }
+
+    .education-item .date {
+      margin-top: 2px;
+    }
+
+    /* SIDEBAR */
+
+    .side-section {
+      margin-bottom: 30px;
+    }
+
+    .side-title {
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .skills {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .skill {
+      color: #555;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .languages {
+      color: #555;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5px;
+      line-height: 2;
+    }
+
+    .side-education {
+      color: #555;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5px;
+      line-height: 1.8;
+    }
+
+    .side-education strong {
+      color: var(--ink);
+    }
+
+    /* FOOTER */
+
     .cv-footer {
-      margin-top: 35px;
-      padding-top: 15px;
+      margin-top: 30px;
+      padding-top: 13px;
       border-top: 1px solid var(--line);
       color: #999;
-      font-size: 10px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      text-align: center;
+      letter-spacing: 1px;
     }
+
+    /* MOBILE */
 
     @media (max-width: 750px) {
 
       .topbar {
-        height: auto;
-        padding: 12px 15px;
-        gap: 12px;
+        padding: 11px 14px;
+        gap: 10px;
       }
 
       .brand {
-        font-size: 13px;
+        font-size: 12px;
+        letter-spacing: 3px;
       }
 
       .top-actions {
@@ -279,35 +402,71 @@
       }
 
       .btn {
-        padding: 8px 10px;
-        font-size: 10px;
+        padding: 8px 9px;
+        font-size: 9px;
       }
 
       .cv-wrapper {
-        padding: 15px 8px;
+        padding: 12px 7px;
       }
 
       .cv {
         width: 100%;
-        grid-template-columns: 1fr;
         min-height: auto;
+        padding: 28px 22px;
       }
 
-      .sidebar {
-        padding: 30px 25px;
+      .cv-header {
+        grid-template-columns: 100px 1fr;
+        gap: 20px;
+        padding-bottom: 23px;
       }
 
       .profile-photo {
-        width: 115px;
-        height: 115px;
+        width: 95px;
+        height: 95px;
       }
 
-      .main {
-        padding: 32px 24px;
+      .job-title {
+        font-size: 9px;
+        letter-spacing: 2px;
       }
 
       .name {
-        font-size: 34px;
+        font-size: 28px;
+      }
+
+      .summary {
+        font-size: 11px;
+      }
+
+      .contact-bar {
+        display: block;
+        line-height: 1.9;
+        padding: 13px 0;
+      }
+
+      .contact-item {
+        display: block;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
+        gap: 5px;
+      }
+
+      .sidebar {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+        padding-left: 0;
+        padding-top: 28px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .side-section {
+        margin-bottom: 12px;
       }
 
       .experience-header {
@@ -315,9 +474,11 @@
       }
 
       .date {
-        margin-top: 5px;
+        margin-top: 4px;
       }
     }
+
+    /* PRINT */
 
     @media print {
 
@@ -337,6 +498,7 @@
         width: 210mm;
         min-height: 297mm;
         box-shadow: none;
+        padding: 48px 50px;
       }
     }
   </style>
@@ -356,7 +518,6 @@
       Customize
     </a>
 
-    <!-- Demo version: PDF download disabled -->
     <button
       class="btn gold"
       onclick="showDemoMessage()"
@@ -373,9 +534,9 @@
 
   <main class="cv">
 
-    <!-- SIDEBAR -->
+    <!-- HEADER -->
 
-    <aside class="sidebar">
+    <header class="cv-header">
 
       <img
         id="profilePhoto"
@@ -384,265 +545,310 @@
         alt="Profile Photo"
       >
 
-      <section class="side-section">
+      <div class="header-content">
 
-        <h2 class="side-title">
-          Contact
-        </h2>
-
-        <div id="contact" class="contact">
-          Cairo, Egypt<br>
-          +20 100 000 0000<br>
-          hello@example.com<br>
-          linkedin.com/in/yourname<br>
-          portfolio.com
+        <div id="jobTitle" class="job-title">
+          Creative Professional
         </div>
 
-      </section>
+        <h1 id="name" class="name">
+          Alex Morgan
+        </h1>
 
+        <p id="summary" class="summary">
+          Results-driven professional with a strong eye for
+          detail, clear communication, and a practical approach
+          to solving problems. Experienced in building polished
+          digital and business experiences with a focus on quality,
+          organization, and measurable results.
+        </p>
 
-      <section class="side-section">
-
-        <h2 class="side-title">
-          Skills
-        </h2>
-
-        <div id="skills" class="skills">
-
-          <span class="skill">Leadership</span>
-          <span class="skill">Communication</span>
-          <span class="skill">Problem Solving</span>
-          <span class="skill">Project Management</span>
-          <span class="skill">Teamwork</span>
-          <span class="skill">Microsoft Office</span>
-
-        </div>
-
-      </section>
-
-
-      <section class="side-section">
-
-        <h2 class="side-title">
-          Languages
-        </h2>
-
-        <div id="languages" class="languages">
-          Arabic — Native<br>
-          English — Professional<br>
-          French — Basic
-        </div>
-
-      </section>
-
-
-      <section class="side-section">
-
-        <h2 class="side-title">
-          Education
-        </h2>
-
-        <div id="sideEducation" class="languages">
-
-          <strong>
-            Bachelor of Business
-          </strong>
-
-          <br>
-
-          University Name
-
-          <br>
-
-          2019 — 2023
-
-        </div>
-
-      </section>
-
-    </aside>
-
-
-    <!-- MAIN -->
-
-    <section class="main">
-
-      <div id="jobTitle" class="job-title">
-        Creative Professional
       </div>
 
-
-      <h1 id="name" class="name">
-        Alex Morgan
-      </h1>
+    </header>
 
 
-      <p id="summary" class="summary">
+    <!-- CONTACT -->
 
-        Results-driven professional with a strong eye for
-        detail, clear communication, and a practical approach
-        to solving problems. Experienced in building polished
-        digital and business experiences with a focus on quality,
-        organization, and measurable results.
+    <div id="contact" class="contact-bar">
 
-      </p>
+      <span class="contact-item">
+        Cairo, Egypt
+      </span>
+
+      <span class="contact-item">
+        +20 100 000 0000
+      </span>
+
+      <span class="contact-item">
+        hello@example.com
+      </span>
+
+      <span class="contact-item">
+        linkedin.com/in/yourname
+      </span>
+
+      <span class="contact-item">
+        portfolio.com
+      </span>
+
+    </div>
 
 
-      <!-- EXPERIENCE -->
+    <div class="content">
 
-      <section class="section">
+      <!-- MAIN -->
 
-        <h2 class="section-title">
-          Experience
-        </h2>
+      <section class="main">
 
-        <div id="experience">
+        <!-- EXPERIENCE -->
 
-          <article class="experience-item">
+        <section class="section">
 
-            <div class="experience-header">
+          <h2 class="section-title">
+            Experience
+          </h2>
 
-              <div>
+          <div id="experience">
 
-                <div class="position">
-                  Senior Specialist
+            <article class="experience-item">
+
+              <div class="experience-header">
+
+                <div>
+
+                  <div class="position">
+                    Senior Specialist
+                  </div>
+
+                  <div class="company">
+                    Company Name
+                  </div>
+
                 </div>
 
-                <div class="company">
-                  Company Name
+                <div class="date">
+                  2023 — Present
                 </div>
 
+              </div>
+
+              <p class="description">
+                Led projects, improved internal workflows,
+                collaborated with cross-functional teams,
+                and helped deliver measurable business results.
+              </p>
+
+            </article>
+
+
+            <article class="experience-item">
+
+              <div class="experience-header">
+
+                <div>
+
+                  <div class="position">
+                    Junior Specialist
+                  </div>
+
+                  <div class="company">
+                    Previous Company
+                  </div>
+
+                </div>
+
+                <div class="date">
+                  2021 — 2023
+                </div>
+
+              </div>
+
+              <p class="description">
+                Supported daily operations, prepared reports,
+                communicated with clients, and contributed
+                to process improvement initiatives.
+              </p>
+
+            </article>
+
+          </div>
+
+        </section>
+
+
+        <!-- PROJECTS -->
+
+        <section class="section">
+
+          <h2 class="section-title">
+            Selected Projects
+          </h2>
+
+          <div id="projects">
+
+            <article class="project">
+
+              <div class="project-title">
+                Digital Brand Project
+              </div>
+
+              <p class="project-text">
+                Developed and managed a digital project focused
+                on improving online presentation, user experience,
+                and brand communication.
+              </p>
+
+            </article>
+
+
+            <article class="project">
+
+              <div class="project-title">
+                Business Improvement Project
+              </div>
+
+              <p class="project-text">
+                Created a streamlined workflow that improved
+                organization and reduced unnecessary manual work.
+              </p>
+
+            </article>
+
+          </div>
+
+        </section>
+
+
+        <!-- EDUCATION -->
+
+        <section class="section">
+
+          <h2 class="section-title">
+            Education
+          </h2>
+
+          <div id="education">
+
+            <article class="education-item">
+
+              <div class="degree">
+                Bachelor of Business Administration
+              </div>
+
+              <div class="university">
+                University Name
               </div>
 
               <div class="date">
-                2023 — Present
+                2019 — 2023
               </div>
 
-            </div>
+            </article>
 
-            <p class="description">
-              Led projects, improved internal workflows,
-              collaborated with cross-functional teams,
-              and helped deliver measurable business results.
-            </p>
+          </div>
 
-          </article>
-
-
-          <article class="experience-item">
-
-            <div class="experience-header">
-
-              <div>
-
-                <div class="position">
-                  Junior Specialist
-                </div>
-
-                <div class="company">
-                  Previous Company
-                </div>
-
-              </div>
-
-              <div class="date">
-                2021 — 2023
-              </div>
-
-            </div>
-
-            <p class="description">
-              Supported daily operations, prepared reports,
-              communicated with clients, and contributed
-              to process improvement initiatives.
-            </p>
-
-          </article>
-
-        </div>
+        </section>
 
       </section>
 
 
-      <!-- PROJECTS -->
+      <!-- SIDEBAR -->
 
-      <section class="section">
+      <aside class="sidebar">
 
-        <h2 class="section-title">
-          Selected Projects
-        </h2>
+        <!-- SKILLS -->
 
-        <div id="projects">
+        <section class="side-section">
 
-          <article class="project">
+          <h2 class="side-title">
+            Skills
+          </h2>
 
-            <div class="project-title">
-              Digital Brand Project
-            </div>
+          <div id="skills" class="skills">
 
-            <p class="project-text">
-              Developed and managed a digital project focused
-              on improving online presentation, user experience,
-              and brand communication.
-            </p>
+            <span class="skill">
+              Leadership
+            </span>
 
-          </article>
+            <span class="skill">
+              Communication
+            </span>
 
+            <span class="skill">
+              Problem Solving
+            </span>
 
-          <article class="project">
+            <span class="skill">
+              Project Management
+            </span>
 
-            <div class="project-title">
-              Business Improvement Project
-            </div>
+            <span class="skill">
+              Teamwork
+            </span>
 
-            <p class="project-text">
-              Created a streamlined workflow that improved
-              organization and reduced unnecessary manual work.
-            </p>
+            <span class="skill">
+              Microsoft Office
+            </span>
 
-          </article>
+          </div>
 
-        </div>
-
-      </section>
-
-
-      <!-- EDUCATION -->
-
-      <section class="section">
-
-        <h2 class="section-title">
-          Education
-        </h2>
-
-        <div id="education">
-
-          <article class="education-item">
-
-            <div class="degree">
-              Bachelor of Business Administration
-            </div>
-
-            <div class="university">
-              University Name
-            </div>
-
-            <div class="date">
-              2019 — 2023
-            </div>
-
-          </article>
-
-        </div>
-
-      </section>
+        </section>
 
 
-      <div class="cv-footer">
-        Royal CV — Premium CV & Resume Template
-      </div>
+        <!-- LANGUAGES -->
 
-    </section>
+        <section class="side-section">
+
+          <h2 class="side-title">
+            Languages
+          </h2>
+
+          <div id="languages" class="languages">
+
+            Arabic — Native<br>
+            English — Professional<br>
+            French — Basic
+
+          </div>
+
+        </section>
+
+
+        <!-- EDUCATION SUMMARY -->
+
+        <section class="side-section">
+
+          <h2 class="side-title">
+            Education
+          </h2>
+
+          <div id="sideEducation" class="side-education">
+
+            <strong>
+              Bachelor of Business
+            </strong>
+
+            <br>
+
+            University Name
+
+            <br>
+
+            2019 — 2023
+
+          </div>
+
+        </section>
+
+      </aside>
+
+    </div>
+
+
+    <div class="cv-footer">
+      ROYAL CV — PREMIUM CV & RESUME TEMPLATE
+    </div>
 
   </main>
 
@@ -678,19 +884,25 @@ function showDemoMessage() {
 }
 
 
+/* LOAD CUSTOMIZED DATA */
+
 function loadCV() {
 
   let data = {};
 
   try {
 
-    data = JSON.parse(
-      localStorage.getItem("royalCVData")
-    ) || {};
+    data =
+      JSON.parse(
+        localStorage.getItem("royalCVData")
+      ) || {};
 
   } catch (error) {
 
-    console.log("Royal CV data error:", error);
+    console.log(
+      "Royal CV data error:",
+      error
+    );
 
   }
 
@@ -702,8 +914,9 @@ function loadCV() {
 
   if (savedPhoto) {
 
-    document.getElementById("profilePhoto").src =
-      savedPhoto;
+    document.getElementById(
+      "profilePhoto"
+    ).src = savedPhoto;
 
   }
 
@@ -712,51 +925,90 @@ function loadCV() {
 
   if (data.fullName) {
 
-    document.getElementById("name").textContent =
-      data.fullName;
+    document.getElementById(
+      "name"
+    ).textContent = data.fullName;
 
   }
 
   if (data.jobTitle) {
 
-    document.getElementById("jobTitle").textContent =
-      data.jobTitle;
+    document.getElementById(
+      "jobTitle"
+    ).textContent = data.jobTitle;
 
   }
 
   if (data.summary) {
 
-    document.getElementById("summary").textContent =
-      data.summary;
+    document.getElementById(
+      "summary"
+    ).textContent = data.summary;
 
   }
 
 
   /* CONTACT */
 
-  const contact = document.getElementById("contact");
+  const contact =
+    document.getElementById("contact");
 
   const contactItems = [];
 
-  if (data.location)
-    contactItems.push(escapeHTML(data.location));
+  if (data.location) {
 
-  if (data.phone)
-    contactItems.push(escapeHTML(data.phone));
+    contactItems.push(
+      escapeHTML(data.location)
+    );
 
-  if (data.email)
-    contactItems.push(escapeHTML(data.email));
+  }
 
-  if (data.linkedin)
-    contactItems.push(escapeHTML(data.linkedin));
+  if (data.phone) {
 
-  if (data.portfolio)
-    contactItems.push(escapeHTML(data.portfolio));
+    contactItems.push(
+      escapeHTML(data.phone)
+    );
+
+  }
+
+  if (data.email) {
+
+    contactItems.push(
+      escapeHTML(data.email)
+    );
+
+  }
+
+  if (data.linkedin) {
+
+    contactItems.push(
+      escapeHTML(data.linkedin)
+    );
+
+  }
+
+  if (data.portfolio) {
+
+    contactItems.push(
+      escapeHTML(data.portfolio)
+    );
+
+  }
 
   if (contactItems.length) {
 
     contact.innerHTML =
-      contactItems.join("<br>");
+      contactItems
+        .map(item => {
+
+          return `
+            <span class="contact-item">
+              ${item}
+            </span>
+          `;
+
+        })
+        .join("");
 
   }
 
@@ -768,7 +1020,10 @@ function loadCV() {
     data.skills.length
   ) {
 
-    document.getElementById("skills").innerHTML =
+    document.getElementById(
+      "skills"
+    ).innerHTML =
+
       data.skills
         .map(skill => {
 
@@ -796,17 +1051,25 @@ function loadCV() {
     data.languages.length
   ) {
 
-    document.getElementById("languages").innerHTML =
+    document.getElementById(
+      "languages"
+    ).innerHTML =
+
       data.languages
         .map(language => {
 
-          if (typeof language === "object") {
+          if (
+            typeof language === "object"
+          ) {
 
             return `
               ${escapeHTML(language.name)}
-              ${language.level
-                ? " — " + escapeHTML(language.level)
-                : ""}
+              ${
+                language.level
+                  ? " — " +
+                    escapeHTML(language.level)
+                  : ""
+              }
             `;
 
           }
@@ -826,7 +1089,10 @@ function loadCV() {
     data.experience.length
   ) {
 
-    document.getElementById("experience").innerHTML =
+    document.getElementById(
+      "experience"
+    ).innerHTML =
+
       data.experience
         .map(item => {
 
@@ -838,23 +1104,33 @@ function loadCV() {
                 <div>
 
                   <div class="position">
-                    ${escapeHTML(item.position || item.title || "")}
+                    ${escapeHTML(
+                      item.position ||
+                      item.title ||
+                      ""
+                    )}
                   </div>
 
                   <div class="company">
-                    ${escapeHTML(item.company || "")}
+                    ${escapeHTML(
+                      item.company || ""
+                    )}
                   </div>
 
                 </div>
 
                 <div class="date">
-                  ${escapeHTML(item.date || "")}
+                  ${escapeHTML(
+                    item.date || ""
+                  )}
                 </div>
 
               </div>
 
               <p class="description">
-                ${escapeHTML(item.description || "")}
+                ${escapeHTML(
+                  item.description || ""
+                )}
               </p>
 
             </article>
@@ -873,7 +1149,10 @@ function loadCV() {
     data.projects.length
   ) {
 
-    document.getElementById("projects").innerHTML =
+    document.getElementById(
+      "projects"
+    ).innerHTML =
+
       data.projects
         .map(item => {
 
@@ -881,11 +1160,17 @@ function loadCV() {
             <article class="project">
 
               <div class="project-title">
-                ${escapeHTML(item.title || item.name || "")}
+                ${escapeHTML(
+                  item.title ||
+                  item.name ||
+                  ""
+                )}
               </div>
 
               <p class="project-text">
-                ${escapeHTML(item.description || "")}
+                ${escapeHTML(
+                  item.description || ""
+                )}
               </p>
 
             </article>
@@ -904,7 +1189,10 @@ function loadCV() {
     data.education.length
   ) {
 
-    document.getElementById("education").innerHTML =
+    document.getElementById(
+      "education"
+    ).innerHTML =
+
       data.education
         .map(item => {
 
@@ -912,15 +1200,21 @@ function loadCV() {
             <article class="education-item">
 
               <div class="degree">
-                ${escapeHTML(item.degree || "")}
+                ${escapeHTML(
+                  item.degree || ""
+                )}
               </div>
 
               <div class="university">
-                ${escapeHTML(item.university || "")}
+                ${escapeHTML(
+                  item.university || ""
+                )}
               </div>
 
               <div class="date">
-                ${escapeHTML(item.date || "")}
+                ${escapeHTML(
+                  item.date || ""
+                )}
               </div>
 
             </article>
@@ -930,26 +1224,34 @@ function loadCV() {
         .join("");
 
 
-    /* Sidebar education */
+    /* SIDEBAR EDUCATION */
 
     const firstEducation =
       data.education[0];
 
     if (firstEducation) {
 
-      document.getElementById("sideEducation").innerHTML = `
+      document.getElementById(
+        "sideEducation"
+      ).innerHTML = `
 
         <strong>
-          ${escapeHTML(firstEducation.degree || "")}
+          ${escapeHTML(
+            firstEducation.degree || ""
+          )}
         </strong>
 
         <br>
 
-        ${escapeHTML(firstEducation.university || "")}
+        ${escapeHTML(
+          firstEducation.university || ""
+        )}
 
         <br>
 
-        ${escapeHTML(firstEducation.date || "")}
+        ${escapeHTML(
+          firstEducation.date || ""
+        )}
 
       `;
 
