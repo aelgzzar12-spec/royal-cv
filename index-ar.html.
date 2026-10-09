@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal CV | السيرة الذاتية</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: #e9edf2;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #252b36;
+}
+
+.toolbar {
+    max-width: 850px;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+button {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    background: #b9975b;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.cv {
+    width: 210mm;
+    min-height: 297mm;
+    max-width: 100%;
+    margin: auto;
+    background: white;
+    display: grid;
+    grid-template-columns: 32% 68%;
+    direction: rtl;
+    box-shadow: 0 5px 25px #0002;
+}
+
+.sidebar {
+    background: #172536;
+    color: white;
+    padding: 28px 20px;
+}
+
+.main {
+    padding: 30px 25px;
+}
+
+.photo-box {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: 4px solid #b9975b;
+    background: #ffffff20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 13px;
+}
+
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.name {
+    font-size: 27px;
+    margin: 0 0 8px;
+    color: #172536;
+}
+
+.job-title {
+    color: #b18b4e;
+    font-size: 17px;
+    margin-bottom: 25px;
+}
+
+.section {
+    margin-bottom: 25px;
+}
+
+.section h2 {
+    font-size: 17px;
+    margin: 0 0 13px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #b9975b;
+}
+
+.sidebar .section h2 {
+    color: #e0bd7d;
+}
+
+p {
+    font-size: 13px;
+    line-height: 1.9;
+    margin: 5px 0;
+    overflow-wrap: anywhere;
+}
+
+.item {
+    margin-bottom: 18px;
+}
+
+.item h3 {
+    font-size: 14px;
+    margin: 0 0 5px;
+}
+
+.date {
+    color: #b18b4e;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.skills {
+    padding: 0 18px 0 0;
+}
+
+.skills li {
+    font-size: 13px;
+    margin-bottom: 9px;
+    line-height: 1.6;
+}
+
+[contenteditable="true"] {
+    outline: 1px dashed #b9975b;
+    outline-offset: 3px;
+    cursor: text;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 650px) {
+    body {
+        padding: 8px;
+    }
+
+    .cv {
+        width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding: 22px;
+    }
+
+    .main {
+        padding: 22px;
+    }
+
+    .name {
+        font-size: 24px;
+    }
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    body {
+        padding: 0;
+        margin: 0;
+        background: white;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .toolbar,
+    .photo-controls {
+        display: none !important;
+    }
+
+    .cv {
+        width: 210mm;
+        min-height: 297mm;
+        max-width: none;
+        margin: 0;
+        box-shadow: none;
+        grid-template-columns: 32% 68%;
+    }
+
+    .sidebar {
+        background: #172536 !important;
+        color: white !important;
+    }
+
+    .sidebar .section h2 {
+        color: #e0bd7d !important;
+    }
+
+    [contenteditable="true"] {
+        outline: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="toolbar">
+    <button id="editBtn" onclick="toggleEdit()">✏️ تعديل البيانات</button>
+    <button onclick="document.getElementById('photoInput').click()">📷 إضافة صورة</button>
+    <button onclick="downloadPDF()">📄 تنزيل PDF</button>
+    <button onclick="newCustomer()">➕ عميل جديد</button>
+</div>
+
+<input type="file" id="photoInput" accept="image/*" hidden>
+
+<div class="cv">
+
+    <!-- الشريط الجانبي -->
+    <aside class="sidebar">
+
+        <div class="photo-box" id="photoBox">
+            <span id="photoPlaceholder">الصورة الشخصية</span>
+            <img id="profilePhoto" alt="الصورة الشخصية" hidden>
+        </div>
+
+        <div class="section">
+            <h2>معلومات التواصل</h2>
+
+            <p>📞 <span data-field="phone">01000000000</span></p>
+            <p>✉️ <span data-field="email">example@email.com</span></p>
+            <p>📍 <span data-field="address">القاهرة، مصر</span></p>
+            <p>🔗 <span data-field="linkedin">LinkedIn.com/in/username</span></p>
+        </div>
+
+        <div class="section">
+            <h2>المهارات</h2>
+            <ul class="skills">
+                <li data-field="skill1">التواصل الفعّال</li>
+                <li data-field="skill2">العمل ضمن فريق</li>
+                <li data-field="skill3">إدارة الوقت</li>
+                <li data-field="skill4">حل المشكلات</li>
+                <li data-field="skill5">إجادة استخدام الحاسب الآلي</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>اللغات</h2>
+            <p data-field="language1">العربية: اللغة الأم</p>
+            <p data-field="language2">الإنجليزية: جيد</p>
+        </div>
+
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main">
+
+        <h1 class="name" data-field="name">أحمد محمد</h1>
+        <div class="job-title" data-field="jobtitle">أخصائي خدمة عملاء</div>
+
+        <section class="section">
+            <h2>الملخص المهني</h2>
+            <p data-field="summary">
+                أمتلك مهارات تواصل جيدة وقدرة على التعامل مع العملاء
+                وحل المشكلات والعمل ضمن فريق. أسعى إلى تطوير مهاراتي
+                والمساهمة في تحقيق أهداف المؤسسة.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>الخبرات العملية</h2>
+
+            <div class="item">
+                <h3 data-field="job1">موظف خدمة عملاء - شركة ABC</h3>
+                <div class="date" data-field="jobdate1">2023 - 2025</div>
+                <p data-field="jobdesc1">
+                    التعامل مع استفسارات العملاء ومساعدتهم في حل المشكلات،
+                    وتسجيل الطلبات ومتابعتها وتحسين تجربة العملاء.
+                </p>
+            </div>
+
+            <div class="item">
+                <h3 data-field="job2">مساعد إداري - شركة XYZ</h3>
+                <div class="date" data-field="jobdate2">2021 - 2023</div>
+                <p data-field="jobdesc2">
+                    تنظيم الملفات والبيانات، وإعداد التقارير،
+                    وتنسيق المواعيد والمساعدة في المهام الإدارية اليومية.
+                </p>
+            </div>
+
+        </section>
+
+        <section class="section">
+            <h2>التعليم</h2>
+
+            <div class="item">
+                <h3 data-field="education">
+                    بكالوريوس تجارة - جامعة القاهرة
+                </h3>
+                <div class="date" data-field="educationdate">2021</div>
+                <p data-field="educationdesc">
+                    التخصص: إدارة الأعمال
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>الدورات التدريبية</h2>
+            <p data-field="courses">
+                أساسيات الحاسب الآلي - مهارات التواصل - خدمة العملاء
+            </p>
+        </section>
+
+    </main>
+</div>
+
+<script>
+let editing = false;
+
+function toggleEdit() {
+    editing = !editing;
+
+    document.querySelectorAll("[data-field]").forEach(element => {
+        element.contentEditable = editing ? "true" : "false";
+    });
+
+    document.getElementById("editBtn").textContent =
+        editing ? "✅ إنهاء التعديل" : "✏️ تعديل البيانات";
+}
+
+function downloadPDF() {
+    if (editing) {
+        toggleEdit();
+    }
+
+    window.print();
+}
+
+document.getElementById("photoInput").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+        alert("من فضلك اختار ملف صورة صحيح.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const photo = document.getElementById("profilePhoto");
+
+        photo.src = e.target.result;
+        photo.hidden = false;
+
+        document.getElementById("photoPlaceholder").hidden = true;
+    };
+
+    reader.readAsDataURL(file);
+});
+
+function newCustomer() {
+    const confirmed = confirm(
+        "هل أنت متأكد؟ سيتم مسح بيانات العميل الحالي وتجهيز قالب جديد."
+    );
+
+    if (!confirmed) return;
+
+    if (editing) {
+        toggleEdit();
+    }
+
+    document.querySelectorAll("[data-field]").forEach(element => {
+        element.textContent = "";
+    });
+
+    const photo = document.getElementById("profilePhoto");
+
+    photo.src = "";
+    photo.hidden = true;
+
+    document.getElementById("photoPlaceholder").hidden = false;
+    document.getElementById("photoInput").value = "";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+</script>
+
+</body>
+</html>
