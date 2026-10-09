@@ -1,2611 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Royal CV | Customize</title>
-
-  <style>
-    :root {
-      --black: #171717;
-      --gold: #b18a55;
-      --gold-light: #d5b47b;
-      --text: #252525;
-      --muted: #777;
-      --line: #e5e0d8;
-      --bg: #eeeae4;
-      --white: #fff;
-      --danger: #b94a48;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.5;
-    }
-
-    /* TOP BAR */
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-
-      min-height: 64px;
-      padding: 12px 20px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-
-      background: #111;
-      color: white;
-    }
-
-    .brand {
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 4px;
-    }
-
-    .top-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      border: 1px solid #444;
-      background: #202020;
-      color: white;
-
-      padding: 9px 14px;
-      border-radius: 7px;
-
-      text-decoration: none;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .btn.gold {
-      background: var(--gold);
-      border-color: var(--gold);
-    }
-
-    .btn.danger {
-      background: transparent;
-      border-color: #7d3735;
-      color: #e6a3a0;
-    }
-
-    /* PAGE */
-
-    .page {
-      width: min(1200px, 94vw);
-      margin: 30px auto 60px;
-    }
-
-    .intro {
-      margin-bottom: 22px;
-    }
-
-    .intro h1 {
-      font-size: 30px;
-      margin-bottom: 5px;
-    }
-
-    .intro p {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .message {
-      display: none;
-
-      background: #e8f4e8;
-      color: #386438;
-
-      border: 1px solid #c7dfc7;
-
-      padding: 10px 14px;
-      border-radius: 7px;
-
-      font-size: 12px;
-      margin-bottom: 15px;
-    }
-
-    .editor {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 24px;
-
-      box-shadow: 0 12px 35px rgba(0,0,0,.06);
-    }
-
-    .card.full {
-      grid-column: 1 / -1;
-    }
-
-    .card-title {
-      font-size: 15px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-
-      padding-bottom: 12px;
-      margin-bottom: 20px;
-
-      border-bottom: 1px solid var(--line);
-    }
-
-    /* FORM */
-
-    .field {
-      margin-bottom: 16px;
-    }
-
-    label {
-      display: block;
-
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-
-      margin-bottom: 7px;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-
-      border: 1px solid #d8d2c9;
-      background: #fff;
-      color: var(--text);
-
-      padding: 11px 12px;
-
-      border-radius: 7px;
-
-      font-family: inherit;
-      font-size: 13px;
-
-      outline: none;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: var(--gold);
-    }
-
-    textarea {
-      min-height: 115px;
-      resize: vertical;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    /* PHOTO */
-
-    .photo-area {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .photo-preview {
-      width: 120px;
-      height: 120px;
-
-      border-radius: 50%;
-      object-fit: cover;
-
-      border: 3px solid var(--gold);
-
-      background: #eee;
-
-      display: block;
-    }
-
-    .photo-controls {
-      flex: 1;
-      min-width: 200px;
-    }
-
-    .upload-label {
-      display: inline-block;
-
-      background: var(--gold);
-      color: white;
-
-      padding: 10px 16px;
-      border-radius: 7px;
-
-      cursor: pointer;
-
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    #photoUpload {
-      display: none;
-    }
-
-    .photo-note {
-      color: var(--muted);
-      font-size: 11px;
-      margin-top: 9px;
-    }
-
-    .remove-photo {
-      margin-top: 9px;
-
-      border: 1px solid #d8b0ae;
-      background: transparent;
-      color: var(--danger);
-
-      padding: 7px 10px;
-      border-radius: 6px;
-
-      cursor: pointer;
-      font-size: 11px;
-    }
-
-    /* REPEATING ITEMS */
-
-    .repeat-item {
-      border: 1px solid var(--line);
-      border-radius: 9px;
-
-      padding: 16px;
-      margin-bottom: 14px;
-
-      background: #faf9f7;
-    }
-
-    .repeat-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      margin-bottom: 13px;
-    }
-
-    .repeat-number {
-      font-size: 12px;
-      font-weight: bold;
-      color: var(--gold);
-    }
-
-    .remove-btn {
-      border: 1px solid #d8b0ae;
-      background: transparent;
-      color: var(--danger);
-
-      padding: 5px 9px;
-      border-radius: 6px;
-
-      cursor: pointer;
-      font-size: 10px;
-    }
-
-    .add-btn {
-      width: 100%;
-
-      border: 1px dashed #b9a98f;
-      background: transparent;
-      color: var(--gold);
-
-      padding: 10px;
-      border-radius: 7px;
-
-      cursor: pointer;
-
-      font-weight: bold;
-      font-size: 12px;
-    }
-
-    /* SAVE AREA */
-
-    .save-area {
-      margin-top: 20px;
-
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-    }
-
-    .save-btn {
-      border: none;
-
-      background: var(--gold);
-      color: white;
-
-      padding: 12px 22px;
-      border-radius: 7px;
-
-      cursor: pointer;
-
-      font-weight: bold;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 800px) {
-
-      .editor {
-        grid-template-columns: 1fr;
-      }
-
-      .card.full {
-        grid-column: auto;
-      }
-
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-
-      .topbar {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .top-actions {
-        width: 100%;
-      }
-
-      .btn {
-        flex: 1;
-        text-align: center;
-      }
-
-      .page {
-        width: 94vw;
-      }
-    }
-
-    /* PRINT */
-
-    @media print {
-
-      body {
-        background: white;
-      }
-
-      .topbar,
-      .intro,
-      .message,
-      .editor,
-      .save-area {
-        display: none !important;
-      }
-
-      .print-cv {
-        display: block !important;
-      }
-    }
-
-    .print-cv {
-      display: none;
-    }
-
-    /* PRINT CV */
-
-    .print-page {
-      width: 210mm;
-      min-height: 297mm;
-
-      margin: auto;
-
-      background: white;
-
-      display: grid;
-      grid-template-columns: 34% 66%;
-    }
-
-    .print-sidebar {
-      background: #171717;
-      color: white;
-      padding: 42px 30px;
-    }
-
-    .print-photo {
-      width: 135px;
-      height: 135px;
-
-      object-fit: cover;
-
-      border-radius: 50%;
-      border: 4px solid white;
-
-      margin-bottom: 28px;
-    }
-
-    .print-side-title {
-      color: #d5b47b;
-
-      font-size: 11px;
-      font-weight: bold;
-
-      letter-spacing: 2px;
-      text-transform: uppercase;
-
-      margin: 25px 0 12px;
-    }
-
-    .print-contact,
-    .print-language,
-    .print-education {
-      color: #ddd;
-      font-size: 12px;
-      line-height: 2;
-    }
-
-    .print-skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .print-skill {
-      border: 1px solid #555;
-      color: #ddd;
-
-      padding: 4px 7px;
-      border-radius: 20px;
-
-      font-size: 9px;
-    }
-
-    .print-main {
-      padding: 48px 45px;
-    }
-
-    .print-job-title {
-      color: #b18a55;
-
-      font-size: 13px;
-      font-weight: bold;
-
-      text-transform: uppercase;
-      letter-spacing: 3px;
-
-      margin-bottom: 8px;
-    }
-
-    .print-name {
-      font-size: 43px;
-      line-height: 1.05;
-
-      margin-bottom: 18px;
-    }
-
-    .print-summary {
-      color: #777;
-
-      font-size: 13px;
-      line-height: 1.9;
-
-      margin-bottom: 35px;
-    }
-
-    .print-section {
-      margin-top: 30px;
-    }
-
-    .print-section-title {
-      font-size: 11px;
-
-      letter-spacing: 3px;
-      text-transform: uppercase;
-
-      padding-bottom: 10px;
-
-      border-bottom: 1px solid #e5e0d8;
-
-      margin-bottom: 20px;
-    }
-
-    .print-experience {
-      margin-bottom: 25px;
-    }
-
-    .print-exp-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .print-position {
-      font-size: 15px;
-      font-weight: bold;
-    }
-
-    .print-company {
-      color: #b18a55;
-
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .print-date {
-      color: #888;
-      font-size: 11px;
-      white-space: nowrap;
-    }
-
-    .print-description,
-    .print-project-text {
-      color: #666;
-
-      font-size: 12px;
-      line-height: 1.8;
-
-      margin-top: 8px;
-    }
-
-    .print-project {
-      margin-bottom: 20px;
-    }
-
-    .print-project-title {
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .print-degree {
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .print-university {
-      color: #b18a55;
-      font-size: 12px;
-    }
-
-    .print-footer {
-      margin-top: 35px;
-
-      padding-top: 15px;
-
-      border-top: 1px solid #e5e0d8;
-
-      color: #999;
-
-      font-size: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal CV | Customize</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #222;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+h2 {
+  margin-top: 28px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #b99a55;
+  font-size: 18px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  margin-top: 7px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+}
+
+textarea {
+  min-height: 85px;
+  resize: vertical;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 7px;
+  background: #171717;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #333;
+}
+
+.secondary {
+  background: #b99a55;
+  color: #111;
+}
+
+.note {
+  margin-top: 20px;
+  padding: 12px;
+  background: #fff8e7;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+</style>
 </head>
 
 <body>
 
-  <header class="topbar">
+<div class="container">
 
-    <div class="brand">
-      ROYAL CV
-    </div>
+  <h1>👑 Royal CV</h1>
+  <p class="subtitle">Customize Your Professional CV</p>
 
-    <div class="top-actions">
+  <form id="cvForm">
 
-      <a href="index.html" class="btn">
-        View CV
-      </a>
+    <h2>Personal Information</h2>
 
-      <button
-        class="btn gold"
-        onclick="saveCV()"
-      >
-        Save Changes
-      </button>
+    <label>Full Name</label>
+    <input name="fullName" value="Ahmed Mohamed Hany" required>
 
-      <button
-        class="btn"
-        onclick="downloadPDF()"
-      >
-        Download PDF
-      </button>
+    <label>Address</label>
+    <input name="address" value="Cairo, Egypt">
 
-    </div>
+    <label>Phone</label>
+    <input name="phone" value="+20 10 6075 6110">
 
-  </header>
+    <label>Email</label>
+    <input name="email" type="email" value="ahmed.anderson.cv@gmail.com">
 
+    <label>Website</label>
+    <input name="website" value="www.reallygreatsite.com">
 
-  <main class="page">
+    <label>Photo URL</label>
+    <input name="photo" type="url" placeholder="https://example.com/photo.jpg">
 
-    <div class="intro">
+    <h2>Professional Summary</h2>
 
-      <h1>
-        Customize Your CV
-      </h1>
+    <label>Summary</label>
+    <textarea name="summary">Results-oriented Mechanical and Mechatronics Engineer seeking a challenging position to apply expertise in designing and implementing innovative solutions for complex engineering challenges. Proven track record of success in project management, problem-solving, and cross-functional collaboration. Adept at utilising cutting-edge technologies to optimise processes and enhance overall efficiency.</textarea>
 
-      <p>
-        Upload your photo, edit your information and create your professional CV.
-      </p>
+    <h2>Work Experience 1</h2>
 
-    </div>
+    <label>Job Title & Company</label>
+    <input name="job1-title" value="Mechatronics Engineer, Borcelle Technologies">
 
+    <label>Employment Dates</label>
+    <input name="job1-date" value="Jan 2023 - Present">
 
-    <div id="message" class="message">
-      Your CV has been saved successfully.
-    </div>
+    <label>Achievement 1</label>
+    <textarea name="job1-bullet1">Led development of an advanced automation system, achieving a 15% increase in operational efficiency.</textarea>
 
+    <label>Achievement 2</label>
+    <textarea name="job1-bullet2">Streamlined manufacturing processes, reducing production costs by 10%.</textarea>
 
-    <div class="editor">
+    <label>Achievement 3</label>
+    <textarea name="job1-bullet3">Implemented preventive maintenance strategies, resulting in a 20% decrease in equipment downtime.</textarea>
 
+    <h2>Work Experience 2</h2>
 
-      <!-- PERSONAL -->
+    <label>Job Title & Company</label>
+    <input name="job2-title" value="System Engineer, Arrowai Industries">
 
-      <section class="card">
+    <label>Employment Dates</label>
+    <input name="job2-date" value="Feb 2021 - Dec 2022">
 
-        <h2 class="card-title">
-          Personal Information
-        </h2>
+    <label>Achievement 1</label>
+    <textarea name="job2-bullet1">Designed and optimised a robotic control system, realizing a 12% performance improvement.</textarea>
 
-        <div class="field">
+    <label>Achievement 2</label>
+    <textarea name="job2-bullet2">Coordinated testing and validation, ensuring compliance with industry standards.</textarea>
 
-          <label>
-            Full Name
-          </label>
+    <label>Achievement 3</label>
+    <textarea name="job2-bullet3">Provided technical expertise, contributing to a 15% reduction in system failures.</textarea>
 
-          <input
-            id="fullName"
-            type="text"
-            placeholder="Alex Morgan"
-          >
+    <h2>Work Experience 3</h2>
 
-        </div>
+    <label>Job Title & Company</label>
+    <input name="job3-title" value="Junior Project Engineer, Salford & Co Manufacturing">
 
-        <div class="field">
+    <label>Employment Dates</label>
+    <input name="job3-date" value="Mar 2020 - Jan 2021">
 
-          <label>
-            Job Title
-          </label>
+    <label>Achievement 1</label>
+    <textarea name="job3-bullet1">Managed full lifecycle of a cutting-edge automation project, meeting all milestones.</textarea>
 
-          <input
-            id="jobTitle"
-            type="text"
-            placeholder="Creative Professional"
-          >
+    <label>Achievement 2</label>
+    <textarea name="job3-bullet2">Conducted feasibility studies and risk assessments, mitigating potential project risks.</textarea>
 
-        </div>
+    <label>Achievement 3</label>
+    <textarea name="job3-bullet3">Collaborated with clients, leading to a 25% increase in customer satisfaction.</textarea>
 
-        <div class="field">
+    <h2>Education 1</h2>
 
-          <label>
-            Professional Summary
-          </label>
+    <label>Degree</label>
+    <input name="education1-title" value="Bachelor of Mechatronics Engineering with Honours">
 
-          <textarea
-            id="summary"
-            placeholder="Write your professional summary..."
-          ></textarea>
+    <label>Dates</label>
+    <input name="education1-date" value="Aug 2016 - Oct 2019">
 
-        </div>
+    <label>University</label>
+    <input name="education1-school" value="University of Engineering Excellence">
 
-      </section>
+    <label>Additional Details 1</label>
+    <textarea name="education1-bullet1">Major in Automotive Technology.</textarea>
 
+    <label>Additional Details 2</label>
+    <textarea name="education1-bullet2">Thesis on “Technological Advancements within the current Mechatronics Industry”.</textarea>
 
-      <!-- PHOTO + CONTACT -->
+    <h2>Education 2</h2>
 
-      <section class="card">
+    <label>Degree</label>
+    <input name="education2-title" value="Diploma in Mechanical Engineering">
 
-        <h2 class="card-title">
-          Photo & Contact
-        </h2>
+    <label>Dates</label>
+    <input name="education2-date" value="May 2014 - May 2016">
 
+    <label>University</label>
+    <input name="education2-school" value="Engineering University">
 
-        <div class="photo-area">
+    <label>Additional Details</label>
+    <textarea name="education2-bullet1">Relevant coursework in Structural Design and Project Management.</textarea>
 
-          <img
-            id="photoPreview"
-            class="photo-preview"
-            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80"
-            alt="Profile Photo"
-          >
+    <h2>Additional Information</h2>
 
-          <div class="photo-controls">
+    <label>Technical Skills</label>
+    <textarea name="skills">Mechatronics System Integration, Automotive Engineering Technology, Project Management, Robotics and Automation, CAD for Mechatronics.</textarea>
 
-            <label
-              class="upload-label"
-              for="photoUpload"
-            >
-              Upload Photo
-            </label>
+    <label>Languages</label>
+    <input name="languages" value="English, Malay, Japan.">
 
-            <input
-              id="photoUpload"
-              type="file"
-              accept="image/*"
-            >
+    <label>Certifications</label>
+    <textarea name="certifications">Professional Engineer (PE) License, Project Management Professional (PMP).</textarea>
 
-            <div class="photo-note">
-              Choose a JPG, PNG or WEBP image from your device.
-            </div>
+    <label>Awards & Activities</label>
+    <textarea name="awards">Actively participated in the "Innovation for Tomorrow" community outreach program, promoting STEM education and inspiring local students.</textarea>
 
-            <button
-              type="button"
-              class="remove-photo"
-              onclick="removePhoto()"
-            >
-              Remove Photo
-            </button>
+    <button type="submit">Generate CV Link</button>
 
-          </div>
+    <button type="button" class="secondary" id="previewBtn">
+      Preview CV
+    </button>
 
-        </div>
+    <button type="button" id="resetBtn">
+      Reset Form
+    </button>
 
+  </form>
 
-        <div class="grid-2">
-
-          <div class="field">
-
-            <label>
-              Location
-            </label>
-
-            <input
-              id="location"
-              type="text"
-              placeholder="Cairo, Egypt"
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Phone
-            </label>
-
-            <input
-              id="phone"
-              type="text"
-              placeholder="+20 100 000 0000"
-            >
-
-          </div>
-
-        </div>
-
-
-        <div class="grid-2">
-
-          <div class="field">
-
-            <label>
-              Email
-            </label>
-
-            <input
-              id="email"
-              type="email"
-              placeholder="hello@example.com"
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              LinkedIn
-            </label>
-
-            <input
-              id="linkedin"
-              type="text"
-              placeholder="linkedin.com/in/yourname"
-            >
-
-          </div>
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Portfolio / Website
-          </label>
-
-          <input
-            id="portfolio"
-            type="text"
-            placeholder="portfolio.com"
-          >
-
-        </div>
-
-      </section>
-
-
-      <!-- SKILLS -->
-
-      <section class="card">
-
-        <h2 class="card-title">
-          Skills
-        </h2>
-
-        <div id="skillsContainer">
-
-          <div class="repeat-item skill-item">
-
-            <div class="repeat-header">
-
-              <span class="repeat-number">
-                Skill 1
-              </span>
-
-              <button
-                type="button"
-                class="remove-btn"
-                onclick="removeItem(this)"
-              >
-                Remove
-              </button>
-
-            </div>
-
-            <input
-              class="skill-input"
-              type="text"
-              placeholder="Leadership"
-            >
-
-          </div>
-
-        </div>
-
-        <button
-          type="button"
-          class="add-btn"
-          onclick="addSkill()"
-        >
-          + Add Skill
-        </button>
-
-      </section>
-
-
-      <!-- LANGUAGES -->
-
-      <section class="card">
-
-        <h2 class="card-title">
-          Languages
-        </h2>
-
-        <div id="languagesContainer">
-
-          <div class="repeat-item language-item">
-
-            <div class="repeat-header">
-
-              <span class="repeat-number">
-                Language 1
-              </span>
-
-              <button
-                type="button"
-                class="remove-btn"
-                onclick="removeItem(this)"
-              >
-                Remove
-              </button>
-
-            </div>
-
-            <div class="grid-2">
-
-              <input
-                class="language-name"
-                type="text"
-                placeholder="English"
-              >
-
-              <input
-                class="language-level"
-                type="text"
-                placeholder="Professional"
-              >
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <button
-          type="button"
-          class="add-btn"
-          onclick="addLanguage()"
-        >
-          + Add Language
-        </button>
-
-      </section>
-
-
-      <!-- EXPERIENCE -->
-
-      <section class="card full">
-
-        <h2 class="card-title">
-          Experience
-        </h2>
-
-        <div id="experienceContainer">
-
-          <div class="repeat-item experience-item">
-
-            <div class="repeat-header">
-
-              <span class="repeat-number">
-                Experience 1
-              </span>
-
-              <button
-                type="button"
-                class="remove-btn"
-                onclick="removeItem(this)"
-              >
-                Remove
-              </button>
-
-            </div>
-
-            <div class="grid-2">
-
-              <div class="field">
-
-                <label>
-                  Position
-                </label>
-
-                <input
-                  class="experience-position"
-                  type="text"
-                  placeholder="Senior Specialist"
-                >
-
-              </div>
-
-              <div class="field">
-
-                <label>
-                  Company
-                </label>
-
-                <input
-                  class="experience-company"
-                  type="text"
-                  placeholder="Company Name"
-                >
-
-              </div>
-
-            </div>
-
-            <div class="field">
-
-              <label>
-                Date
-              </label>
-
-              <input
-                class="experience-date"
-                type="text"
-                placeholder="2023 — Present"
-              >
-
-            </div>
-
-            <div class="field">
-
-              <label>
-                Description
-              </label>
-
-              <textarea
-                class="experience-description"
-                placeholder="Describe your responsibilities and achievements..."
-              ></textarea>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <button
-          type="button"
-          class="add-btn"
-          onclick="addExperience()"
-        >
-          + Add Experience
-        </button>
-
-      </section>
-
-
-      <!-- PROJECTS -->
-
-      <section class="card full">
-
-        <h2 class="card-title">
-          Projects
-        </h2>
-
-        <div id="projectsContainer">
-
-          <div class="repeat-item project-item">
-
-            <div class="repeat-header">
-
-              <span class="repeat-number">
-                Project 1
-              </span>
-
-              <button
-                type="button"
-                class="remove-btn"
-                onclick="removeItem(this)"
-              >
-                Remove
-              </button>
-
-            </div>
-
-            <div class="field">
-
-              <label>
-                Project Title
-              </label>
-
-              <input
-                class="project-title-input"
-                type="text"
-                placeholder="Digital Brand Project"
-              >
-
-            </div>
-
-            <div class="field">
-
-              <label>
-                Project Description
-              </label>
-
-              <textarea
-                class="project-description"
-                placeholder="Describe your project..."
-              ></textarea>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <button
-          type="button"
-          class="add-btn"
-          onclick="addProject()"
-        >
-          + Add Project
-        </button>
-
-      </section>
-
-
-      <!-- EDUCATION -->
-
-      <section class="card full">
-
-        <h2 class="card-title">
-          Education
-        </h2>
-
-        <div id="educationContainer">
-
-          <div class="repeat-item education-item">
-
-            <div class="repeat-header">
-
-              <span class="repeat-number">
-                Education 1
-              </span>
-
-              <button
-                type="button"
-                class="remove-btn"
-                onclick="removeItem(this)"
-              >
-                Remove
-              </button>
-
-            </div>
-
-            <div class="grid-2">
-
-              <div class="field">
-
-                <label>
-                  Degree
-                </label>
-
-                <input
-                  class="education-degree"
-                  type="text"
-                  placeholder="Bachelor of Business Administration"
-                >
-
-              </div>
-
-              <div class="field">
-
-                <label>
-                  University
-                </label>
-
-                <input
-                  class="education-university"
-                  type="text"
-                  placeholder="University Name"
-                >
-
-              </div>
-
-            </div>
-
-            <div class="field">
-
-              <label>
-                Date
-              </label>
-
-              <input
-                class="education-date"
-                type="text"
-                placeholder="2019 — 2023"
-              >
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <button
-          type="button"
-          class="add-btn"
-          onclick="addEducation()"
-        >
-          + Add Education
-        </button>
-
-      </section>
-
-    </div>
-
-
-    <div class="save-area">
-
-      <button
-        class="btn danger"
-        onclick="resetCV()"
-      >
-        Reset
-      </button>
-
-      <button
-        class="save-btn"
-        onclick="saveCV()"
-      >
-        Save Changes
-      </button>
-
-      <button
-        class="btn gold"
-        onclick="downloadPDF()"
-      >
-        Download PDF
-      </button>
-
-    </div>
-
-  </main>
-
-
-  <!-- PRINTABLE CV -->
-
-  <div id="printCV" class="print-cv">
-
-    <div class="print-page">
-
-      <aside class="print-sidebar">
-
-        <img
-          id="printPhoto"
-          class="print-photo"
-          src=""
-          alt="Profile"
-        >
-
-        <div class="print-side-title">
-          Contact
-        </div>
-
-        <div
-          id="printContact"
-          class="print-contact"
-        ></div>
-
-
-        <div class="print-side-title">
-          Skills
-        </div>
-
-        <div
-          id="printSkills"
-          class="print-skills"
-        ></div>
-
-
-        <div class="print-side-title">
-          Languages
-        </div>
-
-        <div
-          id="printLanguages"
-          class="print-language"
-        ></div>
-
-
-        <div class="print-side-title">
-          Education
-        </div>
-
-        <div
-          id="printEducationSide"
-          class="print-education"
-        ></div>
-
-      </aside>
-
-
-      <section class="print-main">
-
-        <div
-          id="printJobTitle"
-          class="print-job-title"
-        ></div>
-
-        <h1
-          id="printName"
-          class="print-name"
-        ></h1>
-
-        <p
-          id="printSummary"
-          class="print-summary"
-        ></p>
-
-
-        <section class="print-section">
-
-          <h2 class="print-section-title">
-            Experience
-          </h2>
-
-          <div id="printExperience"></div>
-
-        </section>
-
-
-        <section class="print-section">
-
-          <h2 class="print-section-title">
-            Selected Projects
-          </h2>
-
-          <div id="printProjects"></div>
-
-        </section>
-
-
-        <section class="print-section">
-
-          <h2 class="print-section-title">
-            Education
-          </h2>
-
-          <div id="printEducationMain"></div>
-
-        </section>
-
-
-        <div class="print-footer">
-          Royal CV — Premium CV & Resume Template
-        </div>
-
-      </section>
-
-    </div>
-
+  <div class="note">
+    <strong>Royal CV:</strong>
+    Fill in the customer's information, then generate a personalized CV link.
+    Make sure index.html contains matching data-field attributes.
   </div>
 
+</div>
 
-  <script>
+<script>
+(function () {
+  "use strict";
 
-    const STORAGE_KEY = "royalCVData";
+  const form = document.getElementById("cvForm");
 
-    const DEFAULT_PHOTO =
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80";
+  function getData() {
+    const data = {};
 
+    new FormData(form).forEach(function (value, key) {
+      data[key] = String(value).trim();
+    });
 
-    /* PHOTO UPLOAD */
+    return data;
+  }
 
-    document
-      .getElementById("photoUpload")
-      .addEventListener("change", function(event) {
+  function getIndexURL() {
+    const current = new URL(window.location.href);
 
-        const file = event.target.files[0];
+    current.pathname = current.pathname.replace(
+      /customize\.html$/i,
+      "index.html"
+    );
 
-        if (!file) return;
+    current.search = "";
+    current.hash = "";
 
-        if (!file.type.startsWith("image/")) {
+    return current;
+  }
 
-          alert("Please select an image file.");
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-          return;
+    const data = getData();
+    const url = getIndexURL();
+
+    Object.entries(data).forEach(function ([key, value]) {
+      if (value) {
+        url.searchParams.set(key, value);
+      }
+    });
+
+    const link = url.toString();
+
+    let output = document.getElementById("generatedLink");
+
+    if (!output) {
+      output = document.createElement("div");
+      output.id = "generatedLink";
+      output.style.marginTop = "20px";
+      output.style.padding = "15px";
+      output.style.background = "#f2f2f2";
+      output.style.borderRadius = "8px";
+
+      form.appendChild(output);
+    }
+
+    output.replaceChildren();
+
+    const heading = document.createElement("h2");
+    heading.textContent = "Your CV Link";
+
+    const linkBox = document.createElement("textarea");
+    linkBox.readOnly = true;
+    linkBox.value = link;
+    linkBox.style.minHeight = "110px";
+
+    const copyButton = document.createElement("button");
+    copyButton.type = "button";
+    copyButton.textContent = "Copy CV Link";
+
+    copyButton.addEventListener("click", async function () {
+      try {
+        await navigator.clipboard.writeText(link);
+        copyButton.textContent = "Copied!";
+      } catch (error) {
+        linkBox.focus();
+        linkBox.select();
+
+        const copied = document.execCommand("copy");
+        copyButton.textContent = copied
+          ? "Copied!"
+          : "Select and copy the link manually";
+      }
+    });
+
+    const openLink = document.createElement("a");
+    openLink.href = link;
+    openLink.target = "_blank";
+    openLink.rel = "noopener";
+    openLink.textContent = "Open CV";
+    openLink.style.display = "block";
+    openLink.style.marginTop = "12px";
+
+    output.append(heading, linkBox, copyButton, openLink);
+    output.scrollIntoView({ behavior: "smooth" });
+  });
+
+  document.getElementById("previewBtn").addEventListener(
+    "click",
+    function () {
+      const data = getData();
+      const url = getIndexURL();
+
+      Object.entries(data).forEach(function ([key, value]) {
+        if (value) {
+          url.searchParams.set(key, value);
         }
-
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-
-          const imageData = e.target.result;
-
-          document
-            .getElementById("photoPreview")
-            .src = imageData;
-
-          localStorage.setItem(
-            "royalCVPhoto",
-            imageData
-          );
-
-        };
-
-        reader.readAsDataURL(file);
-
       });
 
-
-    /* REMOVE PHOTO */
-
-    function removePhoto() {
-
-      localStorage.removeItem("royalCVPhoto");
-
-      document
-        .getElementById("photoPreview")
-        .src = DEFAULT_PHOTO;
-
-      document
-        .getElementById("photoUpload")
-        .value = "";
-
+      window.open(url.toString(), "_blank", "noopener");
     }
-
-
-    /* ADD SKILL */
-
-    function addSkill() {
-
-      const container =
-        document.getElementById("skillsContainer");
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "repeat-item skill-item";
-
-      item.innerHTML = `
-
-        <div class="repeat-header">
-
-          <span class="repeat-number">
-            Skill
-          </span>
-
-          <button
-            type="button"
-            class="remove-btn"
-            onclick="removeItem(this)"
-          >
-            Remove
-          </button>
-
-        </div>
-
-        <input
-          class="skill-input"
-          type="text"
-          placeholder="New Skill"
-        >
-
-      `;
-
-      container.appendChild(item);
-
-      updateNumbers();
-    }
-
-
-    /* ADD LANGUAGE */
-
-    function addLanguage() {
-
-      const container =
-        document.getElementById("languagesContainer");
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "repeat-item language-item";
-
-      item.innerHTML = `
-
-        <div class="repeat-header">
-
-          <span class="repeat-number">
-            Language
-          </span>
-
-          <button
-            type="button"
-            class="remove-btn"
-            onclick="removeItem(this)"
-          >
-            Remove
-          </button>
-
-        </div>
-
-        <div class="grid-2">
-
-          <input
-            class="language-name"
-            type="text"
-            placeholder="Language"
-          >
-
-          <input
-            class="language-level"
-            type="text"
-            placeholder="Level"
-          >
-
-        </div>
-
-      `;
-
-      container.appendChild(item);
-
-      updateNumbers();
-    }
-
-
-    /* ADD EXPERIENCE */
-
-    function addExperience() {
-
-      const container =
-        document.getElementById("experienceContainer");
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "repeat-item experience-item";
-
-      item.innerHTML = `
-
-        <div class="repeat-header">
-
-          <span class="repeat-number">
-            Experience
-          </span>
-
-          <button
-            type="button"
-            class="remove-btn"
-            onclick="removeItem(this)"
-          >
-            Remove
-          </button>
-
-        </div>
-
-        <div class="grid-2">
-
-          <div class="field">
-
-            <label>Position</label>
-
-            <input
-              class="experience-position"
-              type="text"
-              placeholder="Position"
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>Company</label>
-
-            <input
-              class="experience-company"
-              type="text"
-              placeholder="Company"
-            >
-
-          </div>
-
-        </div>
-
-        <div class="field">
-
-          <label>Date</label>
-
-          <input
-            class="experience-date"
-            type="text"
-            placeholder="2023 — Present"
-          >
-
-        </div>
-
-        <div class="field">
-
-          <label>Description</label>
-
-          <textarea
-            class="experience-description"
-            placeholder="Describe your responsibilities..."
-          ></textarea>
-
-        </div>
-
-      `;
-
-      container.appendChild(item);
-
-      updateNumbers();
-    }
-
-
-    /* ADD PROJECT */
-
-    function addProject() {
-
-      const container =
-        document.getElementById("projectsContainer");
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "repeat-item project-item";
-
-      item.innerHTML = `
-
-        <div class="repeat-header">
-
-          <span class="repeat-number">
-            Project
-          </span>
-
-          <button
-            type="button"
-            class="remove-btn"
-            onclick="removeItem(this)"
-          >
-            Remove
-          </button>
-
-        </div>
-
-        <div class="field">
-
-          <label>Project Title</label>
-
-          <input
-            class="project-title-input"
-            type="text"
-            placeholder="Project Title"
-          >
-
-        </div>
-
-        <div class="field">
-
-          <label>Project Description</label>
-
-          <textarea
-            class="project-description"
-            placeholder="Describe your project..."
-          ></textarea>
-
-        </div>
-
-      `;
-
-      container.appendChild(item);
-
-      updateNumbers();
-    }
-
-
-    /* ADD EDUCATION */
-
-    function addEducation() {
-
-      const container =
-        document.getElementById("educationContainer");
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "repeat-item education-item";
-
-      item.innerHTML = `
-
-        <div class="repeat-header">
-
-          <span class="repeat-number">
-            Education
-          </span>
-
-          <button
-            type="button"
-            class="remove-btn"
-            onclick="removeItem(this)"
-          >
-            Remove
-          </button>
-
-        </div>
-
-        <div class="grid-2">
-
-          <div class="field">
-
-            <label>Degree</label>
-
-            <input
-              class="education-degree"
-              type="text"
-              placeholder="Degree"
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>University</label>
-
-            <input
-              class="education-university"
-              type="text"
-              placeholder="University"
-            >
-
-          </div>
-
-        </div>
-
-        <div class="field">
-
-          <label>Date</label>
-
-          <input
-            class="education-date"
-            type="text"
-            placeholder="2019 — 2023"
-          >
-
-        </div>
-
-      `;
-
-      container.appendChild(item);
-
-      updateNumbers();
-    }
-
-
-    /* REMOVE */
-
-    function removeItem(button) {
-
-      const item =
-        button.closest(".repeat-item");
-
-      if (item) {
-
-        item.remove();
-
-        updateNumbers();
-
+  );
+
+  document.getElementById("resetBtn").addEventListener(
+    "click",
+    function () {
+      if (confirm("Reset all fields to their original values?")) {
+        form.reset();
+
+        const output = document.getElementById("generatedLink");
+
+        if (output) {
+          output.remove();
+        }
       }
     }
-
-
-    /* NUMBERS */
-
-    function updateNumbers() {
-
-      document
-        .querySelectorAll(".skill-item")
-        .forEach((item, index) => {
-
-          item.querySelector(".repeat-number")
-            .textContent =
-            "Skill " + (index + 1);
-
-        });
-
-
-      document
-        .querySelectorAll(".language-item")
-        .forEach((item, index) => {
-
-          item.querySelector(".repeat-number")
-            .textContent =
-            "Language " + (index + 1);
-
-        });
-
-
-      document
-        .querySelectorAll(".experience-item")
-        .forEach((item, index) => {
-
-          item.querySelector(".repeat-number")
-            .textContent =
-            "Experience " + (index + 1);
-
-        });
-
-
-      document
-        .querySelectorAll(".project-item")
-        .forEach((item, index) => {
-
-          item.querySelector(".repeat-number")
-            .textContent =
-            "Project " + (index + 1);
-
-        });
-
-
-      document
-        .querySelectorAll(".education-item")
-        .forEach((item, index) => {
-
-          item.querySelector(".repeat-number")
-            .textContent =
-            "Education " + (index + 1);
-
-        });
-
-    }
-
-
-    /* COLLECT DATA */
-
-    function collectData() {
-
-      return {
-
-        fullName:
-          document.getElementById("fullName").value,
-
-        jobTitle:
-          document.getElementById("jobTitle").value,
-
-        summary:
-          document.getElementById("summary").value,
-
-        photo:
-          localStorage.getItem("royalCVPhoto") ||
-          DEFAULT_PHOTO,
-
-        location:
-          document.getElementById("location").value,
-
-        phone:
-          document.getElementById("phone").value,
-
-        email:
-          document.getElementById("email").value,
-
-        linkedin:
-          document.getElementById("linkedin").value,
-
-        portfolio:
-          document.getElementById("portfolio").value,
-
-        skills:
-          [...document.querySelectorAll(".skill-input")]
-          .map(input => input.value),
-
-        languages:
-          [...document.querySelectorAll(".language-item")]
-          .map(item => ({
-
-            name:
-              item.querySelector(".language-name").value,
-
-            level:
-              item.querySelector(".language-level").value
-
-          })),
-
-        experience:
-          [...document.querySelectorAll(".experience-item")]
-          .map(item => ({
-
-            position:
-              item.querySelector(".experience-position").value,
-
-            company:
-              item.querySelector(".experience-company").value,
-
-            date:
-              item.querySelector(".experience-date").value,
-
-            description:
-              item.querySelector(".experience-description").value
-
-          })),
-
-        projects:
-          [...document.querySelectorAll(".project-item")]
-          .map(item => ({
-
-            title:
-              item.querySelector(".project-title-input").value,
-
-            description:
-              item.querySelector(".project-description").value
-
-          })),
-
-        education:
-          [...document.querySelectorAll(".education-item")]
-          .map(item => ({
-
-            degree:
-              item.querySelector(".education-degree").value,
-
-            university:
-              item.querySelector(".education-university").value,
-
-            date:
-              item.querySelector(".education-date").value
-
-          }))
-
-      };
-    }
-
-
-    /* SAVE */
-
-    function saveCV() {
-
-      const data = collectData();
-
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(data)
-      );
-
-      showMessage(
-        "Your CV has been saved successfully."
-      );
-    }
-
-
-    /* MESSAGE */
-
-    function showMessage(text) {
-
-      const message =
-        document.getElementById("message");
-
-      message.textContent = text;
-
-      message.style.display = "block";
-
-      setTimeout(() => {
-
-        message.style.display = "none";
-
-      }, 2500);
-
-    }
-
-
-    /* PREPARE PRINT CV */
-
-    function buildPrintCV() {
-
-      const data = collectData();
-
-
-      document.getElementById("printPhoto").src =
-        data.photo || DEFAULT_PHOTO;
-
-
-      document.getElementById("printJobTitle")
-        .textContent =
-        data.jobTitle || "Professional";
-
-
-      document.getElementById("printName")
-        .textContent =
-        data.fullName || "Your Name";
-
-
-      document.getElementById("printSummary")
-        .textContent =
-        data.summary || "";
-
-
-      document.getElementById("printContact")
-        .innerHTML = [
-
-          data.location,
-          data.phone,
-          data.email,
-          data.linkedin,
-          data.portfolio
-
-        ]
-        .filter(Boolean)
-        .map(escapeHTML)
-        .join("<br>");
-
-
-      document.getElementById("printSkills")
-        .innerHTML =
-        data.skills
-        .filter(Boolean)
-        .map(skill =>
-          `<span class="print-skill">${escapeHTML(skill)}</span>`
-        )
-        .join("");
-
-
-      document.getElementById("printLanguages")
-        .innerHTML =
-        data.languages
-        .filter(item => item.name)
-        .map(item =>
-          `${escapeHTML(item.name)} — ${escapeHTML(item.level)}`
-        )
-        .join("<br>");
-
-
-      document.getElementById("printEducationSide")
-        .innerHTML =
-        data.education
-        .filter(item => item.degree)
-        .map(item =>
-          `<strong>${escapeHTML(item.degree)}</strong><br>
-           ${escapeHTML(item.university)}<br>
-           ${escapeHTML(item.date)}`
-        )
-        .join("<br><br>");
-
-
-      document.getElementById("printExperience")
-        .innerHTML =
-        data.experience
-        .filter(item => item.position)
-        .map(item => `
-
-          <article class="print-experience">
-
-            <div class="print-exp-head">
-
-              <div>
-
-                <div class="print-position">
-                  ${escapeHTML(item.position)}
-                </div>
-
-                <div class="print-company">
-                  ${escapeHTML(item.company)}
-                </div>
-
-              </div>
-
-              <div class="print-date">
-                ${escapeHTML(item.date)}
-              </div>
-
-            </div>
-
-            <p class="print-description">
-              ${escapeHTML(item.description)}
-            </p>
-
-          </article>
-
-        `)
-        .join("");
-
-
-      document.getElementById("printProjects")
-        .innerHTML =
-        data.projects
-        .filter(item => item.title)
-        .map(item => `
-
-          <article class="print-project">
-
-            <div class="print-project-title">
-              ${escapeHTML(item.title)}
-            </div>
-
-            <p class="print-project-text">
-              ${escapeHTML(item.description)}
-            </p>
-
-          </article>
-
-        `)
-        .join("");
-
-
-      document.getElementById("printEducationMain")
-        .innerHTML =
-        data.education
-        .filter(item => item.degree)
-        .map(item => `
-
-          <article>
-
-            <div class="print-degree">
-              ${escapeHTML(item.degree)}
-            </div>
-
-            <div class="print-university">
-              ${escapeHTML(item.university)}
-            </div>
-
-            <div class="print-date">
-              ${escapeHTML(item.date)}
-            </div>
-
-          </article>
-
-        `)
-        .join("");
-
-    }
-
-
-    /* DOWNLOAD PDF */
-
-    function downloadPDF() {
-
-      saveCV();
-
-      buildPrintCV();
-
-      document
-        .getElementById("printCV")
-        .style.display = "block";
-
-      setTimeout(() => {
-
-        window.print();
-
-      }, 300);
-
-    }
-
-
-    /* ESCAPE */
-
-    function escapeHTML(value) {
-
-      return String(value || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-    }
-
-
-    /* LOAD SAVED DATA */
-
-    function loadCV() {
-
-      const saved =
-        localStorage.getItem(STORAGE_KEY);
-
-      const savedPhoto =
-        localStorage.getItem("royalCVPhoto");
-
-
-      if (savedPhoto) {
-
-        document
-          .getElementById("photoPreview")
-          .src = savedPhoto;
-
-      }
-
-
-      if (!saved) return;
-
-
-      try {
-
-        const data =
-          JSON.parse(saved);
-
-
-        document.getElementById("fullName").value =
-          data.fullName || "";
-
-        document.getElementById("jobTitle").value =
-          data.jobTitle || "";
-
-        document.getElementById("summary").value =
-          data.summary || "";
-
-        document.getElementById("location").value =
-          data.location || "";
-
-        document.getElementById("phone").value =
-          data.phone || "";
-
-        document.getElementById("email").value =
-          data.email || "";
-
-        document.getElementById("linkedin").value =
-          data.linkedin || "";
-
-        document.getElementById("portfolio").value =
-          data.portfolio || "";
-
-
-        /* SKILLS */
-
-        if (data.skills) {
-
-          const container =
-            document.getElementById("skillsContainer");
-
-          container.innerHTML = "";
-
-          data.skills.forEach(skill => {
-
-            const item =
-              document.createElement("div");
-
-            item.className =
-              "repeat-item skill-item";
-
-            item.innerHTML = `
-
-              <div class="repeat-header">
-
-                <span class="repeat-number">
-                  Skill
-                </span>
-
-                <button
-                  type="button"
-                  class="remove-btn"
-                  onclick="removeItem(this)"
-                >
-                  Remove
-                </button>
-
-              </div>
-
-              <input
-                class="skill-input"
-                type="text"
-                value="${escapeHTML(skill)}"
-              >
-
-            `;
-
-            container.appendChild(item);
-
-          });
-        }
-
-
-        /* LANGUAGES */
-
-        if (data.languages) {
-
-          const container =
-            document.getElementById("languagesContainer");
-
-          container.innerHTML = "";
-
-          data.languages.forEach(language => {
-
-            const item =
-              document.createElement("div");
-
-            item.className =
-              "repeat-item language-item";
-
-            item.innerHTML = `
-
-              <div class="repeat-header">
-
-                <span class="repeat-number">
-                  Language
-                </span>
-
-                <button
-                  type="button"
-                  class="remove-btn"
-                  onclick="removeItem(this)"
-                >
-                  Remove
-                </button>
-
-              </div>
-
-              <div class="grid-2">
-
-                <input
-                  class="language-name"
-                  type="text"
-                  value="${escapeHTML(language.name)}"
-                >
-
-                <input
-                  class="language-level"
-                  type="text"
-                  value="${escapeHTML(language.level)}"
-                >
-
-              </div>
-
-            `;
-
-            container.appendChild(item);
-
-          });
-        }
-
-
-        /* EXPERIENCE */
-
-        if (data.experience) {
-
-          const container =
-            document.getElementById("experienceContainer");
-
-          container.innerHTML = "";
-
-          data.experience.forEach(exp => {
-
-            const item =
-              document.createElement("div");
-
-            item.className =
-              "repeat-item experience-item";
-
-            item.innerHTML = `
-
-              <div class="repeat-header">
-
-                <span class="repeat-number">
-                  Experience
-                </span>
-
-                <button
-                  type="button"
-                  class="remove-btn"
-                  onclick="removeItem(this)"
-                >
-                  Remove
-                </button>
-
-              </div>
-
-              <div class="grid-2">
-
-                <div class="field">
-
-                  <label>Position</label>
-
-                  <input
-                    class="experience-position"
-                    type="text"
-                    value="${escapeHTML(exp.position)}"
-                  >
-
-                </div>
-
-                <div class="field">
-
-                  <label>Company</label>
-
-                  <input
-                    class="experience-company"
-                    type="text"
-                    value="${escapeHTML(exp.company)}"
-                  >
-
-                </div>
-
-              </div>
-
-              <div class="field">
-
-                <label>Date</label>
-
-                <input
-                  class="experience-date"
-                  type="text"
-                  value="${escapeHTML(exp.date)}"
-                >
-
-              </div>
-
-              <div class="field">
-
-                <label>Description</label>
-
-                <textarea
-                  class="experience-description"
-                >${escapeHTML(exp.description)}</textarea>
-
-              </div>
-
-            `;
-
-            container.appendChild(item);
-
-          });
-        }
-
-
-        /* PROJECTS */
-
-        if (data.projects) {
-
-          const container =
-            document.getElementById("projectsContainer");
-
-          container.innerHTML = "";
-
-          data.projects.forEach(project => {
-
-            const item =
-              document.createElement("div");
-
-            item.className =
-              "repeat-item project-item";
-
-            item.innerHTML = `
-
-              <div class="repeat-header">
-
-                <span class="repeat-number">
-                  Project
-                </span>
-
-                <button
-                  type="button"
-                  class="remove-btn"
-                  onclick="removeItem(this)"
-                >
-                  Remove
-                </button>
-
-              </div>
-
-              <div class="field">
-
-                <label>Project Title</label>
-
-                <input
-                  class="project-title-input"
-                  type="text"
-                  value="${escapeHTML(project.title)}"
-                >
-
-              </div>
-
-              <div class="field">
-
-                <label>Project Description</label>
-
-                <textarea
-                  class="project-description"
-                >${escapeHTML(project.description)}</textarea>
-
-              </div>
-
-            `;
-
-            container.appendChild(item);
-
-          });
-        }
-
-
-        /* EDUCATION */
-
-        if (data.education) {
-
-          const container =
-            document.getElementById("educationContainer");
-
-          container.innerHTML = "";
-
-          data.education.forEach(education => {
-
-            const item =
-              document.createElement("div");
-
-            item.className =
-              "repeat-item education-item";
-
-            item.innerHTML = `
-
-              <div class="repeat-header">
-
-                <span class="repeat-number">
-                  Education
-                </span>
-
-                <button
-                  type="button"
-                  class="remove-btn"
-                  onclick="removeItem(this)"
-                >
-                  Remove
-                </button>
-
-              </div>
-
-              <div class="grid-2">
-
-                <div class="field">
-
-                  <label>Degree</label>
-
-                  <input
-                    class="education-degree"
-                    type="text"
-                    value="${escapeHTML(education.degree)}"
-                  >
-
-                </div>
-
-                <div class="field">
-
-                  <label>University</label>
-
-                  <input
-                    class="education-university"
-                    type="text"
-                    value="${escapeHTML(education.university)}"
-                  >
-
-                </div>
-
-              </div>
-
-              <div class="field">
-
-                <label>Date</label>
-
-                <input
-                  class="education-date"
-                  type="text"
-                  value="${escapeHTML(education.date)}"
-                >
-
-              </div>
-
-            `;
-
-            container.appendChild(item);
-
-          });
-        }
-
-
-        updateNumbers();
-
-      } catch (error) {
-
-        console.log(
-          "Could not load saved data.",
-          error
-        );
-
-      }
-
-    }
-
-
-    /* RESET */
-
-    function resetCV() {
-
-      const confirmed =
-        confirm(
-          "Reset all saved CV data?"
-        );
-
-      if (!confirmed) return;
-
-      localStorage.removeItem(STORAGE_KEY);
-
-      localStorage.removeItem("royalCVPhoto");
-
-      location.reload();
-
-    }
-
-
-    /* START */
-
-    loadCV();
-
-    updateNumbers();
-
-  </script>
+  );
+})();
+</script>
 
 </body>
-        </html>
+</html>
