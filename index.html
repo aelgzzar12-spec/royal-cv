@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ahmed Mohamed Hany | CV</title>
+<title>Royal CV | Resume</title>
 
 <style>
 :root {
@@ -11,9 +11,7 @@
   --rule: #657c8c;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
@@ -47,16 +45,10 @@ body {
   margin-bottom: 5mm;
 }
 
-.photo {
+.photo, .photo-placeholder {
   width: 40mm;
   height: 40mm;
   object-fit: cover;
-  display: block;
-}
-
-.photo-placeholder {
-  width: 40mm;
-  height: 40mm;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,6 +58,8 @@ body {
   border: 1px solid #ddd;
 }
 
+.photo { display: block; }
+
 h1 {
   font-size: 23pt;
   line-height: 1.12;
@@ -73,6 +67,7 @@ h1 {
   font-weight: 750;
   letter-spacing: .15px;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .contact {
@@ -83,15 +78,10 @@ h1 {
   font-size: 10.5pt;
 }
 
-.contact strong {
-  font-weight: 700;
-}
+.contact strong { font-weight: 700; }
 
-.contact span,
-.contact a {
+.contact span {
   overflow-wrap: anywhere;
-  color: inherit;
-  text-decoration: none;
 }
 
 section {
@@ -109,22 +99,16 @@ section {
   border-bottom: 1.2px solid var(--rule);
 }
 
-p {
-  margin: 0;
-}
+p { margin: 0; }
 
-.summary {
-  text-align: justify;
-}
+.summary { text-align: justify; }
 
 .entry {
   margin: 0 0 5mm;
   break-inside: avoid;
 }
 
-.entry:last-child {
-  margin-bottom: 0;
-}
+.entry:last-child { margin-bottom: 0; }
 
 .entry-heading {
   display: flex;
@@ -139,9 +123,7 @@ p {
   text-align: right;
 }
 
-.subheading {
-  margin-top: .5mm;
-}
+.subheading { margin-top: .5mm; }
 
 ul {
   margin: .5mm 0 0;
@@ -151,15 +133,12 @@ ul {
 li {
   padding-left: .3mm;
   margin: 0 0 .3mm;
+  overflow-wrap: anywhere;
 }
 
-.additional-list {
-  margin-top: 0;
-}
+.additional-list { margin-top: 0; }
 
-.additional-list li {
-  margin-bottom: .6mm;
-}
+.additional-list li { margin-bottom: .6mm; }
 
 @media (max-width: 760px) {
   .cv-page {
@@ -175,8 +154,7 @@ li {
     gap: 18px;
   }
 
-  .photo,
-  .photo-placeholder {
+  .photo, .photo-placeholder {
     width: 100px;
     height: 100px;
   }
@@ -191,17 +169,11 @@ li {
     font-size: 13px;
   }
 
-  .section-title {
-    font-size: 15px;
-  }
+  .section-title { font-size: 15px; }
 
-  body {
-    font-size: 13px;
-  }
+  body { font-size: 13px; }
 
-  .entry-heading {
-    gap: 10px;
-  }
+  .entry-heading { gap: 10px; }
 
   .entry-heading .date {
     white-space: normal;
@@ -209,13 +181,9 @@ li {
 }
 
 @media print {
-  html, body {
-    background: #fff;
-  }
+  html, body { background: #fff; }
 
-  body {
-    font-size: 10.5pt;
-  }
+  body { font-size: 10.5pt; }
 
   .cv-page {
     width: 210mm;
@@ -230,8 +198,7 @@ li {
     gap: 10mm;
   }
 
-  .photo,
-  .photo-placeholder {
+  .photo, .photo-placeholder {
     width: 40mm;
     height: 40mm;
   }
@@ -246,13 +213,9 @@ li {
     font-size: 10.5pt;
   }
 
-  .section-title {
-    font-size: 14pt;
-  }
+  .section-title { font-size: 14pt; }
 
-  section {
-    margin-top: 6.5mm;
-  }
+  section { margin-top: 6.5mm; }
 
   @page {
     size: A4;
@@ -289,10 +252,7 @@ li {
 
   <section>
     <h2 class="section-title">Summary</h2>
-
-    <p class="summary" data-field="summary">
-      Results-oriented Mechanical and Mechatronics Engineer seeking a challenging position to apply expertise in designing and implementing innovative solutions for complex engineering challenges. Proven track record of success in project management, problem-solving, and cross-functional collaboration. Adept at utilising cutting-edge technologies to optimise processes and enhance overall efficiency.
-    </p>
+    <p class="summary" data-field="summary">Results-oriented Mechanical and Mechatronics Engineer seeking a challenging position to apply expertise in designing and implementing innovative solutions for complex engineering challenges. Proven track record of success in project management, problem-solving, and cross-functional collaboration. Adept at utilising cutting-edge technologies to optimise processes and enhance overall efficiency.</p>
   </section>
 
   <section>
@@ -303,7 +263,6 @@ li {
         <span data-field="job1-title">Mechatronics Engineer, Borcelle Technologies</span>
         <span class="date" data-field="job1-date">Jan 2023 - Present</span>
       </div>
-
       <ul>
         <li data-field="job1-bullet1">Led development of an advanced automation system, achieving a 15% increase in operational efficiency.</li>
         <li data-field="job1-bullet2">Streamlined manufacturing processes, reducing production costs by 10%.</li>
@@ -316,7 +275,6 @@ li {
         <span data-field="job2-title">System Engineer, Arrowai Industries</span>
         <span class="date" data-field="job2-date">Feb 2021 - Dec 2022</span>
       </div>
-
       <ul>
         <li data-field="job2-bullet1">Designed and optimised a robotic control system, realizing a 12% performance improvement.</li>
         <li data-field="job2-bullet2">Coordinated testing and validation, ensuring compliance with industry standards.</li>
@@ -329,7 +287,6 @@ li {
         <span data-field="job3-title">Junior Project Engineer, Salford &amp; Co Manufacturing</span>
         <span class="date" data-field="job3-date">Mar 2020 - Jan 2021</span>
       </div>
-
       <ul>
         <li data-field="job3-bullet1">Managed full lifecycle of a cutting-edge automation project, meeting all milestones.</li>
         <li data-field="job3-bullet2">Conducted feasibility studies and risk assessments, mitigating potential project risks.</li>
@@ -346,11 +303,7 @@ li {
         <span data-field="education1-title">Bachelor of Mechatronics Engineering with Honours</span>
         <span class="date" data-field="education1-date">Aug 2016 - Oct 2019</span>
       </div>
-
-      <p class="subheading" data-field="education1-school">
-        University of Engineering Excellence
-      </p>
-
+      <p class="subheading" data-field="education1-school">University of Engineering Excellence</p>
       <ul>
         <li data-field="education1-bullet1">Major in Automotive Technology.</li>
         <li data-field="education1-bullet2">Thesis on “Technological Advancements within the current Mechatronics Industry”.</li>
@@ -362,11 +315,7 @@ li {
         <span data-field="education2-title">Diploma in Mechanical Engineering</span>
         <span class="date" data-field="education2-date">May 2014 - May 2016</span>
       </div>
-
-      <p class="subheading" data-field="education2-school">
-        Engineering University
-      </p>
-
+      <p class="subheading" data-field="education2-school">Engineering University</p>
       <ul>
         <li data-field="education2-bullet1">Relevant coursework in Structural Design and Project Management.</li>
       </ul>
@@ -375,30 +324,63 @@ li {
 
   <section>
     <h2 class="section-title">Additional Information</h2>
-
     <ul class="additional-list">
-      <li>
-        <strong>Technical Skills:</strong>
-        <span data-field="skills">Mechatronics System Integration, Automotive Engineering Technology, Project Management, Robotics and Automation, CAD for Mechatronics.</span>
-      </li>
-
-      <li>
-        <strong>Languages:</strong>
-        <span data-field="languages">English, Malay, Japan.</span>
-      </li>
-
-      <li>
-        <strong>Certifications:</strong>
-        <span data-field="certifications">Professional Engineer (PE) License, Project Management Professional (PMP).</span>
-      </li>
-
-      <li>
-        <strong>Awards/Activities:</strong>
-        <span data-field="awards">Actively participated in the "Innovation for Tomorrow" community outreach program, promoting STEM education and inspiring local students.</span>
-      </li>
+      <li><strong>Technical Skills:</strong> <span data-field="skills">Mechatronics System Integration, Automotive Engineering Technology, Project Management, Robotics and Automation, CAD for Mechatronics.</span></li>
+      <li><strong>Languages:</strong> <span data-field="languages">English, Malay, Japan.</span></li>
+      <li><strong>Certifications:</strong> <span data-field="certifications">Professional Engineer (PE) License, Project Management Professional (PMP).</span></li>
+      <li><strong>Awards/Activities:</strong> <span data-field="awards">Actively participated in the "Innovation for Tomorrow" community outreach program, promoting STEM education and inspiring local students.</span></li>
     </ul>
   </section>
 
 </main>
+
+<script>
+(function () {
+  "use strict";
+
+  const params = new URLSearchParams(window.location.search);
+
+  // Apply values passed by customize.html to matching data-field elements.
+  document.querySelectorAll("[data-field]").forEach(function (element) {
+    const field = element.getAttribute("data-field");
+
+    if (params.has(field)) {
+      const value = params.get(field);
+
+      // Preserve the default text when the parameter is empty.
+      if (value !== null && value.trim() !== "") {
+        element.textContent = value;
+      }
+    }
+  });
+
+  // Display the photo when customize.html supplies ?photo=IMAGE_URL
+  const photoUrl = params.get("photo");
+  const placeholder = document.getElementById("photo-placeholder");
+
+  if (photoUrl && placeholder) {
+    try {
+      const parsedUrl = new URL(photoUrl);
+
+      if (parsedUrl.protocol === "https:" || parsedUrl.protocol === "http:") {
+        const image = document.createElement("img");
+        image.className = "photo";
+        image.alt = "Profile Photo";
+        image.src = parsedUrl.href;
+
+        image.onload = function () {
+          placeholder.replaceWith(image);
+        };
+      }
+    } catch (error) {
+      console.warn("Royal CV: Invalid photo URL.");
+    }
+  }
+
+  document.title =
+    (params.get("fullName") || "Royal CV") + " | CV";
+})();
+</script>
+
 </body>
 </html>
