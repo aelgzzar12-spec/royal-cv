@@ -1,222 +1,152 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal CV | السيرة الذاتية</title>
+<title>Royal CV</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  padding:15px;
+  background:#edf0f2;
+  color:#222;
+  font-family:Arial,Tahoma,sans-serif;
 }
 
-body {
-    margin: 0;
-    padding: 20px;
-    background: #e9edf2;
-    font-family: Tahoma, Arial, sans-serif;
-    color: #252b36;
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  margin:0 auto 18px;
+  max-width:900px;
 }
 
-.toolbar {
-    max-width: 850px;
-    margin: 0 auto 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+button{
+  border:0;
+  border-radius:7px;
+  padding:12px 15px;
+  background:#172536;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-button {
-    border: none;
-    padding: 12px 18px;
-    border-radius: 8px;
-    background: #b9975b;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
+button:hover{opacity:.85}
+.gold{background:#b9975b;color:#172536}
+
+.cv{
+  background:white;
+  width:210mm;
+  min-height:297mm;
+  margin:auto;
+  padding:15mm 13mm;
+  box-shadow:0 5px 25px #0001;
 }
 
-button:hover {
-    opacity: 0.85;
+.header{
+  display:grid;
+  grid-template-columns:145px 1fr;
+  gap:25px;
+  align-items:center;
+  margin-bottom:20px;
 }
 
-.cv {
-    width: 210mm;
-    min-height: 297mm;
-    max-width: 100%;
-    margin: auto;
-    background: white;
-    display: grid;
-    grid-template-columns: 32% 68%;
-    direction: rtl;
-    box-shadow: 0 5px 25px #0002;
+.photo{
+  width:145px;
+  height:145px;
+  border:1px solid #ddd;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:#f4f5f6;
+  color:#777;
+  text-align:center;
 }
 
-.sidebar {
-    background: #172536;
-    color: white;
-    padding: 28px 20px;
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.main {
-    padding: 30px 25px;
+h1{
+  font-size:29px;
+  margin:0 0 15px;
+  overflow-wrap:anywhere;
 }
 
-.photo-box {
-    width: 125px;
-    height: 125px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 20px;
-    border: 4px solid #b9975b;
-    background: #ffffff20;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 13px;
+.contact{
+  display:grid;
+  grid-template-columns:100px 1fr;
+  gap:6px 12px;
+  font-size:14px;
 }
 
-.photo-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.contact span{overflow-wrap:anywhere}
+
+.section{
+  margin-top:23px;
+  break-inside:avoid;
 }
 
-.name {
-    font-size: 27px;
-    margin: 0 0 8px;
-    color: #172536;
+.section h2{
+  font-size:18px;
+  border-bottom:2px solid #526c7b;
+  padding-bottom:6px;
+  margin:0 0 9px;
 }
 
-.job-title {
-    color: #b18b4e;
-    font-size: 17px;
-    margin-bottom: 25px;
+p,li{
+  font-size:14px;
+  line-height:1.45;
 }
 
-.section {
-    margin-bottom: 25px;
+p{margin:5px 0}
+
+.job{margin-bottom:18px;break-inside:avoid}
+
+.jobhead{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  font-weight:bold;
+  font-size:14px;
 }
 
-.section h2 {
-    font-size: 17px;
-    margin: 0 0 13px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #b9975b;
+.date{white-space:nowrap}
+
+ul{padding-inline-start:25px;margin-top:5px}
+
+[contenteditable="true"]{
+  outline:1px dashed #b9975b;
+  background:#fffdf6;
 }
 
-.sidebar .section h2 {
-    color: #e0bd7d;
+@media(max-width:650px){
+  body{padding:6px}
+  .cv{width:100%;padding:20px 15px}
+  .header{grid-template-columns:95px 1fr;gap:12px}
+  .photo{width:95px;height:110px}
+  h1{font-size:21px}
+  .contact{grid-template-columns:70px 1fr;font-size:12px}
+  .jobhead{font-size:12px}
+  p,li{font-size:13px}
 }
 
-p {
-    font-size: 13px;
-    line-height: 1.9;
-    margin: 5px 0;
-    overflow-wrap: anywhere;
-}
+@page{size:A4;margin:0}
 
-.item {
-    margin-bottom: 18px;
-}
-
-.item h3 {
-    font-size: 14px;
-    margin: 0 0 5px;
-}
-
-.date {
-    color: #b18b4e;
-    font-size: 12px;
-    margin-bottom: 5px;
-}
-
-.skills {
-    padding: 0 18px 0 0;
-}
-
-.skills li {
-    font-size: 13px;
-    margin-bottom: 9px;
-    line-height: 1.6;
-}
-
-[contenteditable="true"] {
-    outline: 1px dashed #b9975b;
-    outline-offset: 3px;
-    cursor: text;
-}
-
-[hidden] {
-    display: none !important;
-}
-
-@media (max-width: 650px) {
-    body {
-        padding: 8px;
-    }
-
-    .cv {
-        width: 100%;
-        grid-template-columns: 1fr;
-    }
-
-    .sidebar {
-        padding: 22px;
-    }
-
-    .main {
-        padding: 22px;
-    }
-
-    .name {
-        font-size: 24px;
-    }
-}
-
-@page {
-    size: A4;
-    margin: 0;
-}
-
-@media print {
-    body {
-        padding: 0;
-        margin: 0;
-        background: white;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-
-    .toolbar,
-    .photo-controls {
-        display: none !important;
-    }
-
-    .cv {
-        width: 210mm;
-        min-height: 297mm;
-        max-width: none;
-        margin: 0;
-        box-shadow: none;
-        grid-template-columns: 32% 68%;
-    }
-
-    .sidebar {
-        background: #172536 !important;
-        color: white !important;
-    }
-
-    .sidebar .section h2 {
-        color: #e0bd7d !important;
-    }
-
-    [contenteditable="true"] {
-        outline: none !important;
-    }
+@media print{
+  body{margin:0;padding:0;background:white;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .toolbar,.photoInput{display:none!important}
+  .cv{width:210mm;min-height:297mm;margin:0;
+    padding:15mm 13mm;box-shadow:none}
+  [contenteditable="true"]{outline:none;background:transparent}
 }
 </style>
 </head>
@@ -224,187 +154,366 @@ p {
 <body>
 
 <div class="toolbar">
-    <button id="editBtn" onclick="toggleEdit()">✏️ تعديل البيانات</button>
-    <button onclick="document.getElementById('photoInput').click()">📷 إضافة صورة</button>
-    <button onclick="downloadPDF()">📄 تنزيل PDF</button>
-    <button onclick="newCustomer()">➕ عميل جديد</button>
+  <button class="gold" onclick="changeLanguage()" id="langBtn">
+    العربية / English
+  </button>
+
+  <button class="gold" onclick="toggleEdit()" id="editBtn">
+    ✏️ Edit Details
+  </button>
+
+  <button onclick="document.getElementById('photoInput').click()" id="photoBtn">
+    📷 Add Photo
+  </button>
+
+  <button onclick="downloadPDF()" id="pdfBtn">
+    📄 Download PDF
+  </button>
+
+  <button onclick="newCustomer()" id="newBtn">
+    ➕ New Customer
+  </button>
 </div>
 
-<input type="file" id="photoInput" accept="image/*" hidden>
+<input class="photoInput" type="file" id="photoInput"
+accept="image/*" hidden>
 
-<div class="cv">
+<main class="cv">
 
-    <!-- الشريط الجانبي -->
-    <aside class="sidebar">
+  <header class="header">
 
-        <div class="photo-box" id="photoBox">
-            <span id="photoPlaceholder">الصورة الشخصية</span>
-            <img id="profilePhoto" alt="الصورة الشخصية" hidden>
-        </div>
+    <div class="photo">
+      <span id="photoText">Professional Photo</span>
+      <img id="profilePhoto" alt="Profile photo" hidden>
+    </div>
 
-        <div class="section">
-            <h2>معلومات التواصل</h2>
+    <div>
+      <h1 data-field="name">AHMED MOHAMED HANY</h1>
 
-            <p>📞 <span data-field="phone">01000000000</span></p>
-            <p>✉️ <span data-field="email">example@email.com</span></p>
-            <p>📍 <span data-field="address">القاهرة، مصر</span></p>
-            <p>🔗 <span data-field="linkedin">LinkedIn.com/in/username</span></p>
-        </div>
+      <div class="contact">
+        <strong data-label="address">Address:</strong>
+        <span data-field="address">Cairo, Egypt</span>
 
-        <div class="section">
-            <h2>المهارات</h2>
-            <ul class="skills">
-                <li data-field="skill1">التواصل الفعّال</li>
-                <li data-field="skill2">العمل ضمن فريق</li>
-                <li data-field="skill3">إدارة الوقت</li>
-                <li data-field="skill4">حل المشكلات</li>
-                <li data-field="skill5">إجادة استخدام الحاسب الآلي</li>
-            </ul>
-        </div>
+        <strong data-label="phone">Phone:</strong>
+        <span data-field="phone">+20 10 6075 6110</span>
 
-        <div class="section">
-            <h2>اللغات</h2>
-            <p data-field="language1">العربية: اللغة الأم</p>
-            <p data-field="language2">الإنجليزية: جيد</p>
-        </div>
+        <strong data-label="email">Email:</strong>
+        <span data-field="email">ahmed.anderson.cv@gmail.com</span>
 
-    </aside>
+        <strong data-label="website">Website:</strong>
+        <span data-field="website">www.reallygreatsite.com</span>
+      </div>
+    </div>
 
-    <!-- المحتوى الرئيسي -->
-    <main class="main">
+  </header>
 
-        <h1 class="name" data-field="name">أحمد محمد</h1>
-        <div class="job-title" data-field="jobtitle">أخصائي خدمة عملاء</div>
+  <section class="section">
+    <h2 data-label="summaryTitle">SUMMARY</h2>
 
-        <section class="section">
-            <h2>الملخص المهني</h2>
-            <p data-field="summary">
-                أمتلك مهارات تواصل جيدة وقدرة على التعامل مع العملاء
-                وحل المشكلات والعمل ضمن فريق. أسعى إلى تطوير مهاراتي
-                والمساهمة في تحقيق أهداف المؤسسة.
-            </p>
-        </section>
+    <p data-field="summary">
+      Results-oriented Mechanical and Mechatronics Engineer seeking
+      a challenging position to apply expertise in designing and
+      implementing innovative solutions for complex engineering
+      challenges. Experienced in project management, problem-solving
+      and collaboration, with a focus on improving efficiency.
+    </p>
+  </section>
 
-        <section class="section">
-            <h2>الخبرات العملية</h2>
+  <section class="section">
+    <h2 data-label="experienceTitle">WORK EXPERIENCE</h2>
 
-            <div class="item">
-                <h3 data-field="job1">موظف خدمة عملاء - شركة ABC</h3>
-                <div class="date" data-field="jobdate1">2023 - 2025</div>
-                <p data-field="jobdesc1">
-                    التعامل مع استفسارات العملاء ومساعدتهم في حل المشكلات،
-                    وتسجيل الطلبات ومتابعتها وتحسين تجربة العملاء.
-                </p>
-            </div>
+    <div class="job">
+      <div class="jobhead">
+        <span data-field="job1">Mechatronics Engineer, Borcelle Technologies</span>
+        <span class="date" data-field="date1">Jan 2023 - Present</span>
+      </div>
 
-            <div class="item">
-                <h3 data-field="job2">مساعد إداري - شركة XYZ</h3>
-                <div class="date" data-field="jobdate2">2021 - 2023</div>
-                <p data-field="jobdesc2">
-                    تنظيم الملفات والبيانات، وإعداد التقارير،
-                    وتنسيق المواعيد والمساعدة في المهام الإدارية اليومية.
-                </p>
-            </div>
+      <ul>
+        <li data-field="job1a">Developed automation systems to improve operational efficiency.</li>
+        <li data-field="job1b">Improved manufacturing processes and reduced production costs.</li>
+        <li data-field="job1c">Implemented preventive maintenance strategies.</li>
+      </ul>
+    </div>
 
-        </section>
+    <div class="job">
+      <div class="jobhead">
+        <span data-field="job2">System Engineer, Arrowai Industries</span>
+        <span class="date" data-field="date2">Feb 2021 - Dec 2022</span>
+      </div>
 
-        <section class="section">
-            <h2>التعليم</h2>
+      <ul>
+        <li data-field="job2a">Designed and improved robotic control systems.</li>
+        <li data-field="job2b">Coordinated testing and validation.</li>
+        <li data-field="job2c">Provided technical support and solved system problems.</li>
+      </ul>
+    </div>
 
-            <div class="item">
-                <h3 data-field="education">
-                    بكالوريوس تجارة - جامعة القاهرة
-                </h3>
-                <div class="date" data-field="educationdate">2021</div>
-                <p data-field="educationdesc">
-                    التخصص: إدارة الأعمال
-                </p>
-            </div>
-        </section>
+    <div class="job">
+      <div class="jobhead">
+        <span data-field="job3">Junior Project Engineer, Salford & Co</span>
+        <span class="date" data-field="date3">Mar 2020 - Jan 2021</span>
+      </div>
 
-        <section class="section">
-            <h2>الدورات التدريبية</h2>
-            <p data-field="courses">
-                أساسيات الحاسب الآلي - مهارات التواصل - خدمة العملاء
-            </p>
-        </section>
+      <ul>
+        <li data-field="job3a">Managed project tasks and schedules.</li>
+        <li data-field="job3b">Conducted feasibility studies and risk assessments.</li>
+        <li data-field="job3c">Collaborated with clients to improve satisfaction.</li>
+      </ul>
+    </div>
+  </section>
 
-    </main>
-</div>
+  <section class="section">
+    <h2 data-label="educationTitle">EDUCATION</h2>
+
+    <div class="job">
+      <div class="jobhead">
+        <span data-field="education1">Bachelor of Mechatronics Engineering</span>
+        <span class="date" data-field="educationDate1">2016 - 2019</span>
+      </div>
+
+      <p data-field="university1">University of Engineering Excellence</p>
+      <ul>
+        <li data-field="education1a">Major in Automotive Technology.</li>
+        <li data-field="education1b">Relevant engineering projects and coursework.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="jobhead">
+        <span data-field="education2">Diploma in Mechanical Engineering</span>
+        <span class="date" data-field="educationDate2">2014 - 2016</span>
+      </div>
+
+      <p data-field="university2">Engineering University</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 data-label="additionalTitle">ADDITIONAL INFORMATION</h2>
+
+    <ul>
+      <li>
+        <strong data-label="skillsLabel">Technical Skills:</strong>
+        <span data-field="skills">Project Management, Robotics, Automation, CAD.</span>
+      </li>
+
+      <li>
+        <strong data-label="languagesLabel">Languages:</strong>
+        <span data-field="languages">Arabic, English.</span>
+      </li>
+
+      <li>
+        <strong data-label="certificationsLabel">Certifications:</strong>
+        <span data-field="certifications">Professional Training and Certifications.</span>
+      </li>
+
+      <li>
+        <strong data-label="awardsLabel">Awards/Activities:</strong>
+        <span data-field="awards">Professional development and community activities.</span>
+      </li>
+    </ul>
+  </section>
+
+</main>
 
 <script>
+let language = "en";
 let editing = false;
 
-function toggleEdit() {
-    editing = !editing;
+const english = {
+  name:"AHMED MOHAMED HANY",
+  address:"Cairo, Egypt",
+  phone:"+20 10 6075 6110",
+  email:"ahmed.anderson.cv@gmail.com",
+  website:"www.reallygreatsite.com",
+  summary:"Results-oriented Mechanical and Mechatronics Engineer seeking a challenging position to apply expertise in designing and implementing innovative solutions for complex engineering challenges. Experienced in project management, problem-solving and collaboration, with a focus on improving efficiency.",
+  job1:"Mechatronics Engineer, Borcelle Technologies",
+  date1:"Jan 2023 - Present",
+  job1a:"Developed automation systems to improve operational efficiency.",
+  job1b:"Improved manufacturing processes and reduced production costs.",
+  job1c:"Implemented preventive maintenance strategies.",
+  job2:"System Engineer, Arrowai Industries",
+  date2:"Feb 2021 - Dec 2022",
+  job2a:"Designed and improved robotic control systems.",
+  job2b:"Coordinated testing and validation.",
+  job2c:"Provided technical support and solved system problems.",
+  job3:"Junior Project Engineer, Salford & Co",
+  date3:"Mar 2020 - Jan 2021",
+  job3a:"Managed project tasks and schedules.",
+  job3b:"Conducted feasibility studies and risk assessments.",
+  job3c:"Collaborated with clients to improve satisfaction.",
+  education1:"Bachelor of Mechatronics Engineering",
+  educationDate1:"2016 - 2019",
+  university1:"University of Engineering Excellence",
+  education1a:"Major in Automotive Technology.",
+  education1b:"Relevant engineering projects and coursework.",
+  education2:"Diploma in Mechanical Engineering",
+  educationDate2:"2014 - 2016",
+  university2:"Engineering University",
+  skills:"Project Management, Robotics, Automation, CAD.",
+  languages:"Arabic, English.",
+  certifications:"Professional Training and Certifications.",
+  awards:"Professional development and community activities."
+};
 
-    document.querySelectorAll("[data-field]").forEach(element => {
-        element.contentEditable = editing ? "true" : "false";
-    });
+const arabic = {
+  name:"أحمد محمد هاني",
+  address:"القاهرة، مصر",
+  phone:"+20 10 6075 6110",
+  email:"ahmed.anderson.cv@gmail.com",
+  website:"www.reallygreatsite.com",
+  summary:"مهندس ميكانيكا وميكاترونكس يسعى للحصول على فرصة مهنية لتطبيق خبراته في التصميم وتنفيذ الحلول الهندسية المبتكرة. يمتلك مهارات في إدارة المشروعات وحل المشكلات والعمل الجماعي وتحسين الكفاءة التشغيلية.",
+  job1:"مهندس ميكاترونكس، شركة Borcelle Technologies",
+  date1:"يناير 2023 - حتى الآن",
+  job1a:"تطوير أنظمة الأتمتة لتحسين الكفاءة التشغيلية.",
+  job1b:"تحسين عمليات التصنيع وتقليل تكاليف الإنتاج.",
+  job1c:"تطبيق استراتيجيات الصيانة الوقائية.",
+  job2:"مهندس أنظمة، شركة Arrowai Industries",
+  date2:"فبراير 2021 - ديسمبر 2022",
+  job2a:"تصميم وتحسين أنظمة التحكم الروبوتية.",
+  job2b:"تنسيق عمليات الاختبار والتحقق.",
+  job2c:"تقديم الدعم الفني وحل مشكلات الأنظمة.",
+  job3:"مهندس مشروعات مبتدئ، Salford & Co",
+  date3:"مارس 2020 - يناير 2021",
+  job3a:"إدارة مهام المشروعات والجداول الزمنية.",
+  job3b:"إجراء دراسات الجدوى وتقييم المخاطر.",
+  job3c:"التعاون مع العملاء لتحسين مستوى رضاهم.",
+  education1:"بكالوريوس هندسة الميكاترونكس",
+  educationDate1:"2016 - 2019",
+  university1:"جامعة التميز الهندسي",
+  education1a:"التخصص في تكنولوجيا السيارات.",
+  education1b:"مشروعات ومقررات هندسية ذات صلة.",
+  education2:"دبلوم الهندسة الميكانيكية",
+  educationDate2:"2014 - 2016",
+  university2:"الجامعة الهندسية",
+  skills:"إدارة المشروعات، الروبوتات، الأتمتة، التصميم باستخدام CAD.",
+  languages:"العربية، الإنجليزية.",
+  certifications:"الدورات التدريبية والشهادات المهنية.",
+  awards:"التطوير المهني والأنشطة المجتمعية."
+};
 
-    document.getElementById("editBtn").textContent =
-        editing ? "✅ إنهاء التعديل" : "✏️ تعديل البيانات";
+const ui = {
+  en:{
+    edit:"✏️ Edit Details",
+    finish:"✅ Finish Editing",
+    photo:"📷 Add Photo",
+    pdf:"📄 Download PDF",
+    fresh:"➕ New Customer",
+    placeholder:"Professional Photo",
+    address:"Address:",phone:"Phone:",email:"Email:",website:"Website:",
+    summaryTitle:"SUMMARY",
+    experienceTitle:"WORK EXPERIENCE",
+    educationTitle:"EDUCATION",
+    additionalTitle:"ADDITIONAL INFORMATION",
+    skillsLabel:"Technical Skills:",
+    languagesLabel:"Languages:",
+    certificationsLabel:"Certifications:",
+    awardsLabel:"Awards/Activities:"
+  },
+  ar:{
+    edit:"✏️ تعديل البيانات",
+    finish:"✅ إنهاء التعديل",
+    photo:"📷 إضافة صورة",
+    pdf:"📄 تنزيل PDF",
+    fresh:"➕ عميل جديد",
+    placeholder:"الصورة الشخصية",
+    address:"العنوان:",phone:"الهاتف:",email:"البريد الإلكتروني:",website:"الموقع:",
+    summaryTitle:"الملخص المهني",
+    experienceTitle:"الخبرات العملية",
+    educationTitle:"التعليم",
+    additionalTitle:"معلومات إضافية",
+    skillsLabel:"المهارات التقنية:",
+    languagesLabel:"اللغات:",
+    certificationsLabel:"الشهادات:",
+    awardsLabel:"الجوائز والأنشطة:"
+  }
+};
+
+function changeLanguage(){
+  if(editing) toggleEdit();
+
+  language = language === "en" ? "ar" : "en";
+
+  document.documentElement.lang = language;
+  document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+
+  const data = language === "ar" ? arabic : english;
+  const text = ui[language];
+
+  document.querySelectorAll("[data-field]").forEach(el=>{
+    const key = el.dataset.field;
+    el.textContent = data[key] || "";
+  });
+
+  document.querySelectorAll("[data-label]").forEach(el=>{
+    const key = el.dataset.label;
+    el.textContent = text[key] || "";
+  });
+
+  document.getElementById("editBtn").textContent = text.edit;
+  document.getElementById("photoBtn").textContent = text.photo;
+  document.getElementById("pdfBtn").textContent = text.pdf;
+  document.getElementById("newBtn").textContent = text.fresh;
+  document.getElementById("photoText").textContent = text.placeholder;
 }
 
-function downloadPDF() {
-    if (editing) {
-        toggleEdit();
-    }
+function toggleEdit(){
+  editing = !editing;
 
-    window.print();
+  document.querySelectorAll("[data-field]").forEach(el=>{
+    el.contentEditable = editing ? "true" : "false";
+    el.spellcheck = false;
+  });
+
+  const text = ui[language];
+  document.getElementById("editBtn").textContent =
+    editing ? text.finish : text.edit;
 }
 
-document.getElementById("photoInput").addEventListener("change", function(event) {
-    const file = event.target.files[0];
+function downloadPDF(){
+  if(editing) toggleEdit();
+  window.print();
+}
 
-    if (!file) return;
+document.getElementById("photoInput").addEventListener("change",function(e){
+  const file = e.target.files[0];
+  if(!file) return;
 
-    if (!file.type.startsWith("image/")) {
-        alert("من فضلك اختار ملف صورة صحيح.");
-        return;
-    }
+  if(!file.type.startsWith("image/")){
+    alert(language === "ar" ? "اختر صورة صحيحة." : "Please choose a valid image.");
+    return;
+  }
 
-    const reader = new FileReader();
+  const reader = new FileReader();
 
-    reader.onload = function(e) {
-        const photo = document.getElementById("profilePhoto");
+  reader.onload = function(event){
+    document.getElementById("profilePhoto").src = event.target.result;
+    document.getElementById("profilePhoto").hidden = false;
+    document.getElementById("photoText").hidden = true;
+  };
 
-        photo.src = e.target.result;
-        photo.hidden = false;
-
-        document.getElementById("photoPlaceholder").hidden = true;
-    };
-
-    reader.readAsDataURL(file);
+  reader.readAsDataURL(file);
 });
 
-function newCustomer() {
-    const confirmed = confirm(
-        "هل أنت متأكد؟ سيتم مسح بيانات العميل الحالي وتجهيز قالب جديد."
-    );
+function newCustomer(){
+  const message = language === "ar"
+    ? "هل تريد بدء سيرة ذاتية لعميل جديد؟ احفظ PDF الحالي أولاً إذا احتجت."
+    : "Start a new customer CV? Save the current PDF first if needed.";
 
-    if (!confirmed) return;
+  if(!confirm(message)) return;
 
-    if (editing) {
-        toggleEdit();
-    }
+  if(editing) toggleEdit();
 
-    document.querySelectorAll("[data-field]").forEach(element => {
-        element.textContent = "";
-    });
+  document.querySelectorAll("[data-field]").forEach(el=>{
+    el.textContent = "";
+  });
 
-    const photo = document.getElementById("profilePhoto");
+  document.getElementById("profilePhoto").src = "";
+  document.getElementById("profilePhoto").hidden = true;
+  document.getElementById("photoText").hidden = false;
+  document.getElementById("photoInput").value = "";
 
-    photo.src = "";
-    photo.hidden = true;
-
-    document.getElementById("photoPlaceholder").hidden = false;
-    document.getElementById("photoInput").value = "";
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 </script>
 
